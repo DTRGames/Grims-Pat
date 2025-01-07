@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw0mykn1gr1sx"]
+
+[ext_resource type="Script" path="res://Scenes/MainMenu/start.gd" id="1_3lxtd"]
+
+[sub_resource type="Animation" id="Animation_niruq"]
+resource_name = "Floating"
+length = 3.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(122, 49), Vector2(122, 60), Vector2(122, 49)]
+}
+
+[sub_resource type="Animation" id="Animation_0xat7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(122, 49)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ab4l"]
+_data = {
+"Floating": SubResource("Animation_niruq"),
+"RESET": SubResource("Animation_0xat7")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.38125
+anchor_top = 0.037259
+anchor_right = 0.61875
+anchor_bottom = 0.165037
+offset_top = 42.2934
+offset_bottom = 42.2934
+grow_horizontal = 2
+grow_vertical = 2
+text = "grim path"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_1ab4l")
+}
+autoplay = "Floating"
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.415625
+anchor_top = 0.55
+anchor_right = 0.584375
+anchor_bottom = 0.672222
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "start"
+script = ExtResource("1_3lxtd")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
