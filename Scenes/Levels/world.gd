@@ -11,7 +11,7 @@ func _process(delta):
 
 func _ready():
 	GameEvents.leave.connect(on_leave)
-	last_spawned_id = control.current_crime_id
+	last_spawned_id = control.current_deed_id
 
 func on_leave():
 	if control.wrong_choice:
@@ -28,7 +28,7 @@ func on_leave():
 		control.last_spawned_id = last_spawned_id
 	
 	add_child(ins)
-	last_spawned_id = control.current_crime_id
+	last_spawned_id = control.current_deed_id
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	get_tree().change_scene_to_file("res://Scenes/MainMenu/main_menu.tscn")

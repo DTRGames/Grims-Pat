@@ -7,101 +7,100 @@ extends CanvasLayer
 @onready var button = $Control/Button
 @onready var button_2 = $Control/Button2
 
-var current_crime : Dictionary = {}
+var current_deed : Dictionary = {}
 
-# List of crimes with values
-var crimes_list = {
-	"has commited shoplifting": -2,"stole a banana": -1, "was a victim of magic, Apollo": -1, "has commited vehichular manslaughter": -5,
+# List of deeds with values
+var deed_list = {
+	"has did shoplifting": -2,"stole a banana": -1, "was a victim of magic, Apollo": -1, "has did vehichular manslaughter": -5,
 	"Killed a very big moth": 2, "doesnt smoke": 3, "doesnt drink" : 2, "drug addict": -2, "a very happy fella": 1,
-	"has commited tax evasion": -2, "PISSED ON THE MOON": -2, "cyberbullied steve jobs": -2, "likes to walk and talk": 2,
+	"has did tax evasion": -2, "PISSED ON THE MOON": -2, "cyberbullied steve jobs": -2, "likes to walk and talk": 2,
 	"built an orphanage": 7, "saved a guy": 5, "filthy rich": -1, "nothing really matters to him": -2, "killed an eldritch god": -3,
 	"good boy :3": 2, "a very healthy fella": 4, "saved a bird": 3, "pays his taxes": 2,"is the child of light" : 2, "could never do wrong": 2,
-	"solved the fnaf lore": 2, "hes got a cool hat": 1, "weed eater": 2
-	
+	"solved the fnaf lore": 2, "hes got a cool hat": 1, "weed eater": 2, "put some dirt in your eyes": 0
 }
 
-# Crimes dictionary
-var crimes = {
+# deeds dictionary
+var deeds = {
 	1: {
 		"name": "Bob",
 		"occupation": "Businessman",
 		"description": "",
-		"is_gulty": false
+		"killable": false
 	},
 	2: {
 		"name": "Steve",
 		"occupation": "Unemployed",
 		"description": "",
-		"is_gulty": true
+		"killable": true
 	},
 	3: {
 		"name": "Jay",
 		"occupation": "Doctor",
 		"description": "",
-		"is_gulty": false
+		"killable": false
 	},
 	4: {
 		"name": "Dude",
 		"occupation": "Store Owner",
 		"description": "",
-		"is_gulty": true
+		"killable": true
 	},
 	5: {
 		"name": "Guy",
 		"occupation": "Doctor",
 		"description": "",
-		"is_gulty": false
+		"killable": false
 	}
 }
 
-var current_crime_id = 0
+var current_deed_id = 0
 var last_spawned_id = -1
 var wrong_choice = false
 
-# Function to pick random crimes
-func pick_random_crimes() -> Dictionary:
-	var selected_crimes = []
+# Function to pick random deeds
+func pick_random_deeds() -> Dictionary:
+	var selected_deeds = []
 	var total_value = 0
 	for i in range(3):
-		var crime = crimes_list.keys()[randi() % crimes_list.size()]
-		selected_crimes.append(crime)
-		total_value += crimes_list[crime]
-	return {"description": ", ".join(selected_crimes), "total_value": total_value}
+		var deed = deed_list.keys()[randi() % deed_list.size()]
+		selected_deeds.append(deed)
+		total_value += deed_list[deed]
+	return {"description": ", ".join(selected_deeds), "total_value": total_value}
 
-# Function to assign a random crime
-func assign_random_crime() -> int:
+# Function to assign a random deed
+func assign_random_deed() -> int:
 	if last_spawned_id != -1:
-		crimes.erase(last_spawned_id)
+		deeds.erase(last_spawned_id)
 	
-	var crime_ids = crimes.keys()
-	return crime_ids[randi() % crime_ids.size()]
+	var deed_ids = deeds.keys()
+	return deed_ids[randi() % deed_ids.size()]
 
-# Function to process a crime
-func process_crime(crime_id: int) -> void:
-	var crime = crimes[crime_id]
-	var random_crimes = pick_random_crimes()
-	crime["description"] = random_crimes["description"]
-	crime["is_gulty"] = random_crimes["total_value"] < 0
-	label_3.text = str("Occupation: ", crime["occupation"])
-	label_2.text = str(crime["name"])
-	label_4.text = str("Deeds: ", crime["description"])
-	print("Crime description: ", crime["description"])
-	print("Total value: ", random_crimes["total_value"])
-	print("Is guilty: ", crime["is_gulty"])
+# Function to process a deed
+func process_deed(deed_id: int) -> void:
+	var deed = deeds[deed_id]
+	var random_deeds = pick_random_deeds()
+	deed["description"] = random_deeds["description"]
+	deed["killable"] = random_deeds["total_value"] < 0
+	label_3.text = str("Occupation: ", deed["occupation"])
+	label_2.text = str(deed["name"])
+	label_4.text = str("Deeds: ", deed["description"])
+	print("deed description: ", deed["description"])
+	print("Total value: ", random_deeds["total_value"])
+	print("Is guilty: ", deed["killable"])
 
 # Function to check if a person is a criminal
-func is_criminal(crime_id: int) -> bool:
-	return crimes[crime_id]["is_gulty"]
+func is_criminal(deed_id: int) -> bool:
+	return deeds[deed_id]["killable"]
 
 func _ready():
-	current_crime_id = assign_random_crime()
-	process_crime(current_crime_id)
+	current_deed_id = assign_random_deed()
+	process_deed(current_deed_id)
 
 func on_pressed():
 	button_2.disabled = true
 	button.disabled = true
 	
-	wrong_choice = is_criminal(current_crime_id)
+	wrong_choice = is_criminal(current_deed_id)
 	if wrong_choice:
 		print("Wrong person! This person is innocent.")
 	else:
@@ -117,7 +116,7 @@ func on_pressed2():
 	button_2.disabled = true
 	button.disabled = true
 	
-	wrong_choice = is_criminal(current_crime_id)
+	wrong_choice = is_criminal(current_deed_id)
 	if wrong_choice:
 		print("Correct! Score: ")
 		GameEvents.on_screen += 1
