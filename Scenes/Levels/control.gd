@@ -9,99 +9,110 @@ extends CanvasLayer
 
 var current_crime : Dictionary = {}
 
+# List of crimes with values
+var crimes_list = {
+	"has commited shoplifting": -2,"stole a banana": -1, "was a victim of magic, Apollo": -1, "has commited vehichular manslaughter": -5,
+	"Killed a very big moth": 2, "doesnt smoke": 3, "doesnt drink" : 2, "drug addict": -2, "a very happy fella": 1,
+	"has commited tax evasion": -2, "PISSED ON THE MOON": -2, "cyberbullied steve jobs": -2, "likes to walk and talk": 2,
+	"built an orphanage": 7, "saved a guy": 5, "filthy rich": -1, "nothing really matters to him": -2, "killed an eldritch god": -3,
+	"good boy :3": 2, "a very healthy fella": 4, "saved a bird": 3, "pays his taxes": 2,"is the child of light" : 2, "could never do wrong": 2,
+	"solved the fnaf lore": 2, "hes got a cool hat": 1, "weed eater": 2
+	
+}
+
+# Crimes dictionary
 var crimes = {
 	1: {
 		"name": "Bob",
 		"occupation": "Businessman",
-		"description": "Deed: Stealed from a local store, helped the elders, was in prison for 30 days for killing in self defence",
+		"description": "",
 		"is_gulty": false
 	},
 	2: {
 		"name": "Steve",
 		"occupation": "Unemployed",
-		"description": "Deed: Suspected for murder, Helped the community",
+		"description": "",
 		"is_gulty": true
 	},
 	3: {
 		"name": "Jay",
 		"occupation": "Doctor",
-		"description": "Deed: Saved 3 people, stoled 3 gum packets, Committing financial fraud.",
+		"description": "",
 		"is_gulty": false
 	},
 	4: {
 		"name": "Dude",
 		"occupation": "Store Owner",
-		"description": "Deed: Committed arson,Helped the homeless,Bribed the officer who puted him in jail",
+		"description": "",
 		"is_gulty": true
 	},
 	5: {
 		"name": "Guy",
 		"occupation": "Doctor",
-		"description": "Deed: Cyberbullyed Steve Jobs,Saved one guy from a fire,But failed to save one in the procces",
+		"description": "",
 		"is_gulty": false
 	}
 }
 
-
-
 var current_crime_id = 0
 var last_spawned_id = -1
 
+# Function to pick random crimes
+func pick_random_crimes() -> Dictionary:
+	var selected_crimes = []
+	var total_value = 0
+	for i in range(3):
+		var crime = crimes_list.keys()[randi() % crimes_list.size()]
+		selected_crimes.append(crime)
+		total_value += crimes_list[crime]
+	return {"description": ", ".join(selected_crimes), "total_value": total_value}
+
+# Function to assign a random crime
 func assign_random_crime() -> int:
 	if last_spawned_id != -1:
 		crimes.erase(last_spawned_id)
 	
-	# Get a list of all crime IDs from the crimes dictionary
 	var crime_ids = crimes.keys()
-	
-	# Randomly select a crime from the list
 	return crime_ids[randi() % crime_ids.size()]
 
+# Function to process a crime
 func process_crime(crime_id: int) -> void:
-	# Fetch the assigned crime
 	var crime = crimes[crime_id]
-	
-	
+	var random_crimes = pick_random_crimes()
+	crime["description"] = random_crimes["description"]
+	crime["is_gulty"] = random_crimes["total_value"] < 0
 	label_3.text = str("Occupation: ", crime["occupation"])
 	label_2.text = str(crime["name"])
-	label_4.text = str(crime["description"])
+	label_4.text = str("Deeds: ", crime["description"])
+	print("Crime description: ", crime["description"])
+	print("Total value: ", random_crimes["total_value"])
+	print("Is guilty: ", crime["is_gulty"])
 
+# Function to check if a person is a criminal
 func is_criminal(crime_id: int) -> bool:
-	# Check if the crime is medium or high severity
-	var crime = crimes[crime_id]
-	if crime["is_gulty"] == true:
-		return true
-	return false
+	return crimes[crime_id]["is_gulty"]
 
 func _ready():
-	# Assign a random crime ID
 	current_crime_id = assign_random_crime()
-	
-	# Process the selected crime
 	process_crime(current_crime_id)
 
 func on_pressed():
-	# If the person is guilty (criminal), increment the score
 	button_2.disabled = true
 	button.disabled = true
 	
 	if is_criminal(current_crime_id):
-		
-		print("Wrong person! This person is innocent.")
+		print("Wrong person! This person is criminal.")
+
 	else:
-		GameEvents.on_screen += 1
 		print("Correct! Score: ")
+		GameEvents.on_screen += 1
 	
-	
-	
-	# Play animation and leave the scene
 	animation_player.play("Out")
 	await animation_player.animation_finished
 	GameEvents.leave.emit()
 	queue_free()
 
 func on_pressed2():
-	# If the person is guilty (criminal), increment the score
 	button_2.disabled = true
 	button.disabled = true
 	
@@ -111,8 +122,6 @@ func on_pressed2():
 	else:
 		print("Wrong person! This person is innocent.")
 	
-	
-	# Play animation and leave the scene
 	animation_player.play("Out")
 	await animation_player.animation_finished
 	GameEvents.leave.emit()
@@ -120,7 +129,6 @@ func on_pressed2():
 
 func _on_button_pressed():
 	on_pressed()
-
 
 func _on_button_2_pressed():
 	on_pressed()
