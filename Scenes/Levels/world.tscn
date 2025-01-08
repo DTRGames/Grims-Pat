@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ivohauh2bvd4"]
+[gd_scene load_steps=12 format=3 uid="uid://ivohauh2bvd4"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/world.gd" id="1_03klo"]
 [ext_resource type="PackedScene" uid="uid://da1nf55g0ar8d" path="res://Scenes/Levels/control.tscn" id="1_xplog"]
+[ext_resource type="Script" path="res://Scenes/Levels/pause_menu.gd" id="3_55f3v"]
+[ext_resource type="FontFile" uid="uid://e4m514wv3fa3" path="res://Scenes/Levels/m6x11 (1).ttf" id="3_86ped"]
+[ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="4_prqbg"]
 
 [sub_resource type="Animation" id="Animation_n7n78"]
 resource_name = "In"
@@ -40,6 +43,42 @@ _data = {
 "In": SubResource("Animation_n7n78"),
 "RESET": SubResource("Animation_03syr")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mwkx"]
+bg_color = Color(0.647059, 0.619608, 0.588235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.490196, 0.470588, 0.447059, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7f8b5"]
+bg_color = Color(0.590736, 0.564513, 0.538235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.408153, 0.390383, 0.369015, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6strj"]
+bg_color = Color(0.647059, 0.619608, 0.588235, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.490196, 0.470588, 0.447059, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_03klo")
@@ -118,4 +157,85 @@ libraries = {
 "": SubResource("AnimationLibrary_qmj46")
 }
 
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_55f3v")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/PauseMenu"]
+custom_minimum_size = Vector2(109, 144)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.329688
+anchor_top = 0.1
+anchor_right = 0.670313
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6mwkx")
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="CanvasLayer/PauseMenu/Panel"]
+layout_mode = 0
+anchor_left = 0.188073
+anchor_top = 0.118056
+anchor_right = 0.830275
+anchor_bottom = 0.215278
+theme_override_fonts/font = ExtResource("3_86ped")
+text = "Pause menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/Panel"]
+layout_mode = 0
+anchor_left = 0.211009
+anchor_top = 0.3125
+anchor_right = 0.816514
+anchor_bottom = 0.868056
+offset_bottom = -21.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_prqbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7f8b5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6strj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6strj")
+text = "Resume"
+
+[node name="Restart" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_prqbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7f8b5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6strj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6strj")
+text = "Restart"
+
+[node name="Settings" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_prqbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7f8b5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6strj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6strj")
+text = "Settings"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/PauseMenu/Panel/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("4_prqbg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7f8b5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6strj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6strj")
+text = "Main menu"
+
 [connection signal="animation_finished" from="CanvasLayer/GameOver/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Restart" to="CanvasLayer/PauseMenu" method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/MainMenu" to="CanvasLayer/PauseMenu" method="_on_main_menu_pressed"]
