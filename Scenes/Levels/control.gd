@@ -13,22 +13,36 @@ var crimes = {
 	1: {
 		"name": "Bob",
 		"occupation": "Businessman",
-		"description": "What he did: Stealed from a local store, helped the elders, was in prison for 30 days for killing in self defence",
+		"description": "Deed: Stealed from a local store, helped the elders, was in prison for 30 days for killing in self defence",
 		"is_gulty": false
 	},
 	2: {
 		"name": "Steve",
 		"occupation": "Unemployed",
-		"description": "What he did: Suspected for murder, Helped the community",
+		"description": "Deed: Suspected for murder, Helped the community",
 		"is_gulty": true
 	},
 	3: {
 		"name": "Jay",
 		"occupation": "Doctor",
-		"description": "What he did: Saved 3 people, stoled 3 gum packets, Committing financial fraud.",
+		"description": "Deed: Saved 3 people, stoled 3 gum packets, Committing financial fraud.",
+		"is_gulty": false
+	},
+	4: {
+		"name": "Dude",
+		"occupation": "Store Owner",
+		"description": "Deed: Committed arson,Helped the homeless,Bribed the officer who puted him in jail",
+		"is_gulty": true
+	},
+	5: {
+		"name": "Guy",
+		"occupation": "Doctor",
+		"description": "Deed: Cyberbullyed Steve Jobs,Saved one guy from a fire,But failed to save one in the procces",
 		"is_gulty": false
 	}
 }
+
+
 
 var current_crime_id = 0
 var last_spawned_id = -1
