@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw0mykn1gr1sx"]
+[gd_scene load_steps=6 format=3 uid="uid://dw0mykn1gr1sx"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/start.gd" id="1_3lxtd"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/quit.gd" id="2_tamvr"]
 
 [sub_resource type="Animation" id="Animation_niruq"]
 resource_name = "Floating"
@@ -92,4 +93,19 @@ text = "start"
 script = ExtResource("1_3lxtd")
 metadata/_edit_use_anchors_ = true
 
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.415625
+anchor_top = 0.705556
+anchor_right = 0.584375
+anchor_bottom = 0.827778
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "quit"
+script = ExtResource("2_tamvr")
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
+[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
