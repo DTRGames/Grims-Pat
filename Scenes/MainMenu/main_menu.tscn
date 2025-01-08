@@ -1,7 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw0mykn1gr1sx"]
+[gd_scene load_steps=20 format=3 uid="uid://dw0mykn1gr1sx"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/start.gd" id="1_3lxtd"]
+[ext_resource type="Shader" path="res://Scenes/MainMenu/main_menu_fire.gdshader" id="1_wdqgs"]
+[ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="1_xpdq4"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/quit.gd" id="2_tamvr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qg0vb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mvvim"]
+noise = SubResource("FastNoiseLite_qg0vb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcx23"]
+shader = ExtResource("1_wdqgs")
+shader_parameter/Yoffset = 0.5
+shader_parameter/animaiton_speed = 0.5
+shader_parameter/flame_color = Color(1, 0.356863, 0, 1)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_mvvim")
 
 [sub_resource type="Animation" id="Animation_niruq"]
 resource_name = "Floating"
@@ -18,7 +32,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(122, 49), Vector2(122, 60), Vector2(122, 49)]
+"values": [Vector2(98.5, 49), Vector2(98.5, 59), Vector2(98.5, 49)]
 }
 
 [sub_resource type="Animation" id="Animation_0xat7"]
@@ -42,6 +56,24 @@ _data = {
 "RESET": SubResource("Animation_0xat7")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_le1jh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_83fsx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4cryl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2r3t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f15ha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3h2o1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r0igy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2nsg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwpac"]
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -50,7 +82,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="Panel" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_dcx23")
+layout_mode = 0
+offset_left = -29.0
+offset_top = -38.0
+offset_right = 334.0
+offset_bottom = 203.0
+
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,17 +109,22 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.38125
-anchor_top = 0.037259
-anchor_right = 0.61875
-anchor_bottom = 0.165037
-offset_top = 42.2934
-offset_bottom = 42.2934
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.5
+offset_top = -32.1948
+offset_right = 61.5
+offset_bottom = 5.8052
 grow_horizontal = 2
 grow_vertical = 2
-text = "grim path"
-metadata/_edit_use_anchors_ = true
+theme_override_fonts/font = ExtResource("1_xpdq4")
+theme_override_font_sizes/font_size = 32
+text = "Grimms Path"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Title"]
 root_node = NodePath("../..")
@@ -81,31 +135,49 @@ autoplay = "Floating"
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.415625
-anchor_top = 0.55
-anchor_right = 0.584375
-anchor_bottom = 0.672222
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -5.0
+offset_right = 14.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 10
+theme_override_fonts/font = ExtResource("1_xpdq4")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/focus = SubResource("StyleBoxEmpty_le1jh")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_83fsx")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4cryl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_c2r3t")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f15ha")
 text = "start"
 script = ExtResource("1_3lxtd")
-metadata/_edit_use_anchors_ = true
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.415625
-anchor_top = 0.705556
-anchor_right = 0.584375
-anchor_bottom = 0.827778
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = 13.0
+offset_right = 11.0
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 10
+focus_mode = 0
+theme_override_fonts/font = ExtResource("1_xpdq4")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3h2o1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_r0igy")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_o2nsg")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cwpac")
 text = "quit"
 script = ExtResource("2_tamvr")
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Start" to="Start" method="_on_pressed"]
 [connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
