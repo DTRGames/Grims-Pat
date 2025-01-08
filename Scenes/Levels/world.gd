@@ -11,16 +11,10 @@ func _process(delta):
 
 func _ready():
 	GameEvents.leave.connect(on_leave)
+	GameEvents.lose_life.connect(lose_life)
 	last_spawned_id = control.current_deed_id
 
 func on_leave():
-	if control.wrong_choice:
-		lives -= 1
-		$CanvasLayer/Lives/Label.text = "lives: " + str(lives)
-		if lives == 0:
-			$CanvasLayer/GameOver.visible = true
-			$CanvasLayer/GameOver/AnimationPlayer.play(&"In")
-			return
 	var ins = instance.instantiate()
 	control = ins
 	
@@ -32,3 +26,11 @@ func on_leave():
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	get_tree().change_scene_to_file("res://Scenes/MainMenu/main_menu.tscn")
+
+func lose_life():
+	lives -= 1
+	$CanvasLayer/Lives/Label.text = "lives: " + str(lives)
+	if lives == 0:
+		$CanvasLayer/GameOver.visible = true
+		$CanvasLayer/GameOver/AnimationPlayer.play(&"In")
+		return

@@ -11,12 +11,12 @@ var current_deed : Dictionary = {}
 
 # List of deeds with values
 var deed_list = {
-	"has did shoplifting": -2,"stole a banana": -1, "was a victim of magic, Apollo": -1, "has did vehichular manslaughter": -5,
+	"has did shoplifting": -2,"stole a banana": -1, "was a victim of magic, Apollo": -1, "has did vehichular manslaughter": -7,
 	"Killed a very big moth": 2, "doesnt smoke": 3, "doesnt drink" : 2, "drug addict": -2, "a very happy fella": 1,
 	"has did tax evasion": -2, "PISSED ON THE MOON": -2, "cyberbullied steve jobs": -2, "likes to walk and talk": 2,
 	"built an orphanage": 7, "saved a guy": 5, "filthy rich": -1, "nothing really matters to him": -2, "killed an eldritch god": -3,
 	"good boy :3": 2, "a very healthy fella": 4, "saved a bird": 3, "pays his taxes": 2,"is the child of light" : 2, "could never do wrong": 2,
-	"solved the fnaf lore": 2, "hes got a cool hat": 1, "weed eater": 2, "put some dirt in your eyes": 0
+	"solved the fnaf lore": 2, "hes got a cool hat": 1, "weed eater": 2, "put some dirt in your eyes": -1
 }
 
 # deeds dictionary
@@ -103,6 +103,7 @@ func on_pressed():
 	wrong_choice = is_criminal(current_deed_id)
 	if wrong_choice:
 		print("Wrong person! This person is innocent.")
+		GameEvents.lose_life.emit()
 	else:
 		print("Correct! Score: ")
 		GameEvents.on_screen += 1
@@ -122,6 +123,7 @@ func on_pressed2():
 		GameEvents.on_screen += 1
 	else:
 		print("Wrong person! This person is innocent.")
+		GameEvents.lose_life.emit()
 	
 	animation_player.play("Out")
 	await animation_player.animation_finished
@@ -132,4 +134,4 @@ func _on_button_pressed():
 	on_pressed()
 
 func _on_button_2_pressed():
-	on_pressed()
+	on_pressed2()
