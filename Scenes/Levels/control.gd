@@ -31,8 +31,12 @@ var crimes = {
 }
 
 var current_crime_id = 0
+var last_spawned_id = -1
 
 func assign_random_crime() -> int:
+	if last_spawned_id != -1:
+		crimes.erase(last_spawned_id)
+	
 	# Get a list of all crime IDs from the crimes dictionary
 	var crime_ids = crimes.keys()
 	
