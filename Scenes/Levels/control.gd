@@ -56,6 +56,7 @@ var crimes = {
 
 var current_crime_id = 0
 var last_spawned_id = -1
+var wrong_choice = false
 
 # Function to pick random crimes
 func pick_random_crimes() -> Dictionary:
@@ -100,9 +101,9 @@ func on_pressed():
 	button_2.disabled = true
 	button.disabled = true
 	
-	if is_criminal(current_crime_id):
-		print("Wrong person! This person is criminal.")
-
+	wrong_choice = is_criminal(current_crime_id)
+	if wrong_choice:
+		print("Wrong person! This person is innocent.")
 	else:
 		print("Correct! Score: ")
 		GameEvents.on_screen += 1
@@ -116,7 +117,8 @@ func on_pressed2():
 	button_2.disabled = true
 	button.disabled = true
 	
-	if is_criminal(current_crime_id):
+	wrong_choice = is_criminal(current_crime_id)
+	if wrong_choice:
 		print("Correct! Score: ")
 		GameEvents.on_screen += 1
 	else:
