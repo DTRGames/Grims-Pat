@@ -7,8 +7,6 @@ extends CanvasLayer
 @onready var button = $Control/Button
 @onready var button_2 = $Control/Button2
 
-var current_deed : Dictionary = {}
-
 # List of deeds with values
 var deed_list = {
 	"has did shoplifting": -2,"stole a banana": -1, "was a victim of magic, Apollo": -1, "has did vehichular manslaughter": -7,
@@ -19,8 +17,8 @@ var deed_list = {
 	"solved the fnaf lore": 2, "hes got a cool hat": 1, "weed eater": 2, "put some dirt in your eyes": -1
 }
 
-# deeds dictionary
-var deeds = {
+# person dictionary
+var person_list = {
 	1: {
 		"name": "Bob",
 		"occupation": "Businessman",
@@ -53,8 +51,8 @@ var deeds = {
 	}
 }
 
-var current_deed_id = 0
-var last_spawned_id = -1
+var current_person_id = 0
+var last_person_id = -1
 var wrong_choice = false
 
 # Function to pick random deeds
@@ -69,38 +67,38 @@ func pick_random_deeds() -> Dictionary:
 
 # Function to assign a random deed
 func assign_random_deed() -> int:
-	if last_spawned_id != -1:
-		deeds.erase(last_spawned_id)
+	if last_person_id != -1:
+		person_list.erase(last_person_id)
 	
-	var deed_ids = deeds.keys()
-	return deed_ids[randi() % deed_ids.size()]
+	var person_id = person_list.keys()
+	return person_id[randi() % person_id.size()]
 
 # Function to process a deed
-func process_deed(deed_id: int) -> void:
-	var deed = deeds[deed_id]
+func process_deed(person_id: int) -> void:
+	var person = person_list[person_id]
 	var random_deeds = pick_random_deeds()
-	deed["description"] = random_deeds["description"]
-	deed["killable"] = random_deeds["total_value"] < 0
-	label_3.text = str("Occupation: ", deed["occupation"])
-	label_2.text = str(deed["name"])
-	label_4.text = str("Deeds: ", deed["description"])
-	print("deed description: ", deed["description"])
+	person["description"] = random_deeds["description"]
+	person["killable"] = random_deeds["total_value"] < 0
+	label_3.text = str("Occupation: ", person["occupation"])
+	label_2.text = str(person["name"])
+	label_4.text = str("Deeds: ", person["description"])
+	print("deed description: ", person["description"])
 	print("Total value: ", random_deeds["total_value"])
-	print("Is guilty: ", deed["killable"])
+	print("is killable: ", person["killable"])
 
 # Function to check if a person is a criminal
-func is_criminal(deed_id: int) -> bool:
-	return deeds[deed_id]["killable"]
+func is_killable(person_id: int) -> bool:
+	return person_list[person_id]["killable"]
 
 func _ready():
-	current_deed_id = assign_random_deed()
-	process_deed(current_deed_id)
+	current_person_id = assign_random_deed()
+	process_deed(current_person_id)
 
 func on_pressed():
 	button_2.disabled = true
 	button.disabled = true
 	
-	wrong_choice = is_criminal(current_deed_id)
+	wrong_choice = is_killable(current_person_id)
 	if wrong_choice:
 		print("Wrong person! This person is innocent.")
 		GameEvents.lose_life.emit()
@@ -117,7 +115,7 @@ func on_pressed2():
 	button_2.disabled = true
 	button.disabled = true
 	
-	wrong_choice = is_criminal(current_deed_id)
+	wrong_choice = is_killable(current_person_id)
 	if wrong_choice:
 		print("Correct! Score: ")
 		GameEvents.on_screen += 1
