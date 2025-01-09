@@ -59,7 +59,7 @@ var wrong_choice = false
 func pick_random_deeds() -> Dictionary:
 	var selected_deeds = []
 	var total_value = 0
-	for i in range(3):
+	for i in range(GameEvents.deed_count):
 		var deed = deed_list.keys()[randi() % deed_list.size()]
 		selected_deeds.append(deed)
 		total_value += deed_list[deed]
