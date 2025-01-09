@@ -12,7 +12,7 @@ var time_passed : float
 
 func _process(delta):
 	time_passed += delta
-	if GameEvents.on_screen == randf_range(1, 1):
+	if GameEvents.on_screen == randf_range(40, 50):
 		GameEvents.game_over.emit()
 
 func _ready():

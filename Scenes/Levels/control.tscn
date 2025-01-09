@@ -1,32 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://da1nf55g0ar8d"]
+[gd_scene load_steps=18 format=3 uid="uid://da1nf55g0ar8d"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/control.gd" id="1_xbpct"]
-[ext_resource type="Texture2D" uid="uid://c5s44afpbwbx3" path="res://Scenes/Levels/Panel.png" id="2_jvwrp"]
+[ext_resource type="Texture2D" uid="uid://ca3n02klxsfci" path="res://Scenes/Levels/clsiffied.png" id="2_d0sgb"]
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="2_l1ne5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y666e"]
-bg_color = Color(0.647059, 0.619608, 0.588235, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.490196, 0.470588, 0.447059, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t06g5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b25ww"]
-bg_color = Color(0.590736, 0.564513, 0.538235, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.408153, 0.390383, 0.369015, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hw3c0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f8qc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wrf81"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4s5un"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v2nkf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_54g2x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xpx7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqb3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suce0"]
 
 [sub_resource type="Animation" id="Animation_37c7t"]
 resource_name = "In"
@@ -41,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(352, 0), Vector2(-70, 0)]
+"values": [Vector2(352, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1ge4i"]
@@ -57,7 +53,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-70, 0), Vector2(352, 0)]
+"values": [Vector2(0, 0), Vector2(352, 300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.92677]
 }
 
 [sub_resource type="Animation" id="Animation_6bs85"]
@@ -73,6 +81,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cawsg"]
@@ -90,20 +110,23 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -167.0
+offset_left = 352.0
+offset_top = 300.0
+offset_right = 185.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Sprite2D" parent="Control"]
 texture_filter = 1
 position = Vector2(160, 90)
-texture = ExtResource("2_jvwrp")
+texture = ExtResource("2_d0sgb")
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 0
-offset_left = 152.0
+offset_left = 79.0
 offset_top = 8.0
-offset_right = 252.0
+offset_right = 179.0
 offset_bottom = 73.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 0
@@ -116,6 +139,7 @@ layout_mode = 2
 [node name="Label2" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_l1ne5")
 theme_override_font_sizes/font_size = 32
 text = "Theft"
@@ -125,6 +149,7 @@ vertical_alignment = 1
 [node name="Label3" type="Label" parent="Control/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_l1ne5")
 text = "sdadadsadad"
 horizontal_alignment = 1
@@ -133,9 +158,9 @@ autowrap_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control"]
 layout_mode = 0
-offset_left = 73.0
+offset_left = 16.0
 offset_top = 74.0
-offset_right = 254.0
+offset_right = 174.0
 offset_bottom = 139.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
@@ -148,6 +173,7 @@ layout_mode = 2
 [node name="Label4" type="Label" parent="Control/MarginContainer2/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_l1ne5")
 text = "Cyberbullyed Steve Jobs,Saved one guy from a fire,But failed to save one in the procces"
 horizontal_alignment = 1
@@ -156,30 +182,39 @@ autowrap_mode = 2
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 148.0
-offset_right = 145.0
-offset_bottom = 168.0
+offset_left = 63.0
+offset_top = 152.0
+offset_right = 112.0
+offset_bottom = 172.0
 focus_mode = 0
+theme_override_colors/font_hover_color = Color(0.332881, 0.332881, 0.332881, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_l1ne5")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_y666e")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b25ww")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y666e")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y666e")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_t06g5")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hw3c0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f8qc1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wrf81")
 text = "Spare"
 
 [node name="Button2" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 197.0
-offset_top = 149.0
-offset_right = 246.0
-offset_bottom = 169.0
+offset_left = 24.0
+offset_top = 154.0
+offset_right = 73.0
+offset_bottom = 174.0
 focus_mode = 0
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.332881, 0.332881, 0.332881, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_l1ne5")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_y666e")
-theme_override_styles/hover = SubResource("StyleBoxFlat_b25ww")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_y666e")
-theme_override_styles/normal = SubResource("StyleBoxFlat_y666e")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_4s5un")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_v2nkf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_54g2x")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_4xpx7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gqb3x")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_suce0")
 text = "Kill"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

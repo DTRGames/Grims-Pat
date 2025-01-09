@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5s44afpbwbx3"
-path="res://.godot/imported/Panel.png-29201851df3d5c9d56f5986d8cb07ca8.ctex"
+uid="uid://b1xiblhuybw6r"
+path="res://.godot/imported/Paper-Sheet.png-a1992dee10584218d7d9b8daa54cbe7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Levels/Panel.png"
-dest_files=["res://.godot/imported/Panel.png-29201851df3d5c9d56f5986d8cb07ca8.ctex"]
+source_file="res://Scenes/Levels/Paper-Sheet.png"
+dest_files=["res://.godot/imported/Paper-Sheet.png-a1992dee10584218d7d9b8daa54cbe7d.ctex"]
 
 [params]
 

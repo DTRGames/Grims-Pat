@@ -2,12 +2,13 @@ extends Control
 
 var stop : bool = false
 
-@onready var panel = $Panel
+@onready var v_box_container = $Panel/VBoxContainer
+
 @onready var window_button = $Settings/WindowButton
 @onready var settings_back = $Settings/SettingsBack
 @onready var label = $Settings/Label
 @onready var settings = $Settings
-
+@onready var title = $Panel/Title
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"escape") and stop == false:
@@ -45,7 +46,8 @@ func _on_window_button_pressed():
 
 
 func _on_settings_back_pressed():
-	panel.visible = true
+	v_box_container.visible = true
+	title.visible = true
 	window_button.visible = false
 	label.visible = false
 	settings_back.visible = false
@@ -53,8 +55,9 @@ func _on_settings_back_pressed():
 
 
 func _on_settings_pressed():
-	panel.visible = false
+	v_box_container.visible = false
 	window_button.visible = true
 	label.visible = true
+	title.visible = false
 	settings_back.visible = true
 	settings.visible = true
