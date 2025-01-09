@@ -77,6 +77,11 @@ func assign_random_deed() -> int:
 func process_deed(person_id: int) -> void:
 	var person = person_list[person_id]
 	var random_deeds = pick_random_deeds()
+	
+	if GameEvents.on_screen > 0:
+		# Hide one to two words in the description
+		random_deeds["description"] = hide_words_randomly(random_deeds["description"])
+	
 	person["description"] = random_deeds["description"]
 	person["killable"] = random_deeds["total_value"] < 0
 	label_3.text = str("Occupation: ", person["occupation"])
@@ -85,6 +90,21 @@ func process_deed(person_id: int) -> void:
 	print("deed description: ", person["description"])
 	print("Total value: ", random_deeds["total_value"])
 	print("is killable: ", person["killable"])
+
+# Helper function to hide one to two words randomly
+func hide_words_randomly(description: String) -> String:
+	var words = description.split(", ")
+	var num_words_to_hide = randi() % 2 + 1  # Hide one to two words
+	var indices_to_hide = []
+	while indices_to_hide.size() < num_words_to_hide:
+		var index = randi() % words.size()
+		if index not in indices_to_hide:
+			indices_to_hide.append(index)
+	
+	for i in indices_to_hide:
+		words[i] = "####"
+	
+	return ", ".join(words)
 
 # Function to check if a person is a criminal
 func is_killable(person_id: int) -> bool:
