@@ -103,7 +103,7 @@ func on_pressed():
 		print("Wrong person! This person is innocent.")
 		GameEvents.lose_life.emit()
 	else:
-		print("Correct! Score: ")
+		print("Correct! Score: ",GameEvents.on_screen)
 		GameEvents.on_screen += 1
 	
 	animation_player.play("Out")
@@ -117,7 +117,7 @@ func on_pressed2():
 	
 	wrong_choice = is_killable(current_person_id)
 	if wrong_choice:
-		print("Correct! Score: ")
+		print("Correct! Score: ",GameEvents.on_screen)
 		GameEvents.on_screen += 1
 	else:
 		print("Wrong person! This person is innocent.")
