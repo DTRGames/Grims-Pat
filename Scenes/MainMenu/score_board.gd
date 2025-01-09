@@ -43,3 +43,7 @@ func set_text_gameover():
 
 func set_text_won():
 	title.text = str("YOU WON")
+
+
+func _on_button_pressed():
+	SceneTransion.transion("res://Scenes/MainMenu/main_menu.tscn")

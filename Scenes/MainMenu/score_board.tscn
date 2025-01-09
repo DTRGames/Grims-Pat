@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2tf3jmovwkrw"]
+[gd_scene load_steps=17 format=3 uid="uid://d2tf3jmovwkrw"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/score_board.gd" id="1_yda40"]
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="2_xvajs"]
@@ -6,7 +6,7 @@
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_t73l0"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mvvim"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t7ni7"]
 noise = SubResource("FastNoiseLite_t73l0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5pulp"]
@@ -14,7 +14,7 @@ shader = ExtResource("3_xn86w")
 shader_parameter/Yoffset = 0.5
 shader_parameter/animaiton_speed = 0.5
 shader_parameter/flame_color = Color(1, 0.356863, 0, 1)
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_mvvim")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_t7ni7")
 
 [sub_resource type="Animation" id="Animation_7g46h"]
 resource_name = "Enter"
@@ -46,26 +46,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Node:modulate")
-tracks/2/interp = 1
+tracks/2/path = NodePath("ColorRect2:position")
+tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [Vector2(-29, 179), Vector2(-29, -50)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect2:position")
-tracks/3/interp = 2
+tracks/3/path = NodePath("Node:modulate")
+tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-29, 179), Vector2(-29, -50)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_dvn5w"]
@@ -97,26 +97,26 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Node:modulate")
+tracks/2/path = NodePath("ColorRect2:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(-29, 179)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ColorRect2:position")
+tracks/3/path = NodePath("Node:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-29, 179)]
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1eewu"]
@@ -124,6 +124,20 @@ _data = {
 "Enter": SubResource("Animation_7g46h"),
 "RESET": SubResource("Animation_dvn5w")
 }
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oxtlt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgyi8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glxsm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqocu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t80ku"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7fdc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nt56a"]
 
 [node name="ScoreBoard" type="CanvasLayer"]
 process_mode = 3
@@ -246,3 +260,27 @@ libraries = {
 "": SubResource("AnimationLibrary_1eewu")
 }
 autoplay = "Enter"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 35.0
+offset_right = 36.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_xvajs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_oxtlt")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qgyi8")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glxsm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_eqocu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_t80ku")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_v7fdc")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nt56a")
+text = "MAIN MENU"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

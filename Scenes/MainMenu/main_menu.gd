@@ -34,11 +34,11 @@ func _on_normal_mouse_exited() -> void:
 
 func _on_easy_pressed() -> void:
 	GameEvents.deed_count = 3
-	get_tree().change_scene_to_file("res://Scenes/Levels/world.tscn")
+	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
 func _on_normal_pressed() -> void:
 	GameEvents.deed_count = 5
-	get_tree().change_scene_to_file("res://Scenes/Levels/world.tscn")
+	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
 func _on_back_pressed() -> void:
 	$Difficulty/Description.visible = false

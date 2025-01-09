@@ -1,8 +1,9 @@
 extends Control
 
+var stop : bool = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"escape"):
+	if event.is_action_pressed(&"escape") and stop == false:
 		if visible:
 			visible = false
 		else :
@@ -12,7 +13,7 @@ func _on_resume_pressed() -> void:
 	visible = false
 
 func _on_restart_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Levels/world.tscn")
+	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
 func _on_main_menu_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/MainMenu/main_menu.tscn")
+	SceneTransion.transion("res://Scenes/MainMenu/main_menu.tscn")

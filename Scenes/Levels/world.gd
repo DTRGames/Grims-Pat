@@ -6,12 +6,13 @@ var last_person_id = -1
 var lives = 3
 var time_passed : float
 
+@onready var pause_menu = $CanvasLayer/PauseMenu
 
 @onready var control = $Control
 
 func _process(delta):
 	time_passed += delta
-	if GameEvents.on_screen == randf_range(40, 50):
+	if GameEvents.on_screen == randf_range(1, 1):
 		GameEvents.game_over.emit()
 
 func _ready():
@@ -30,8 +31,7 @@ func on_leave():
 	add_child(ins)
 	last_person_id = control.current_person_id
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	get_tree().change_scene_to_file("res://Scenes/MainMenu/main_menu.tscn")
+
 
 func lose_life():
 	lives -= 1
@@ -40,6 +40,7 @@ func lose_life():
 		GameEvents.game_over.emit()
 
 func game_over():
+	pause_menu.stop = true
 	var ins = score_board.instantiate()
 	ins.time = time_passed
 	ins.lives = lives

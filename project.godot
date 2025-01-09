@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameEvents="*res://Globals/game_events.tscn"
+SceneTransion="*res://Scenes/MainMenu/scene_transion.tscn"
 
 [display]
 
