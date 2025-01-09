@@ -9,12 +9,118 @@ extends CanvasLayer
 
 # List of deeds with values
 var deed_list = {
-	"has did shoplifting": -2,"stole a banana": -1, "was a victim of magic, Apollo": -1, "has did vehichular manslaughter": -7,
-	"Killed a very big moth": 2, "doesnt smoke": 3, "doesnt drink" : 2, "drug addict": -2, "a very happy fella": 1,
-	"has did tax evasion": -2, "PISSED ON THE MOON": -2, "cyberbullied steve jobs": -2, "likes to walk and talk": 2,
-	"built an orphanage": 7, "saved a guy": 5, "filthy rich": -1, "nothing really matters to him": -2, "killed an eldritch god": -3,
-	"good boy :3": 2, "a very healthy fella": 4, "saved a bird": 3, "pays his taxes": 2,"is the child of light" : 2, "could never do wrong": 2,
-	"solved the fnaf lore": 2, "hes got a cool hat": 1, "weed eater": 2, "put some dirt in your eyes": -1
+	"has did shoplifting": {
+		"value": -2,
+		"hint": "something is missing"
+	},
+	"stole a banana": {
+		"value": -1,
+		"hint": "enemy of monkey"
+	},
+	"was a victim of magic, Apollo": {
+		"value": -1,
+		"hint": "need hint"
+	},
+	 "has did vehichular manslaughter": {
+		"value": -7,
+		"hint": "need hint"
+	},
+	"Killed a very big moth": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"doesnt smoke": {
+		"value": 3,
+		"hint": "need hint"
+	},
+	"doesnt drink": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"drug addict": {
+		"value": -2,
+		"hint": "need hint"
+	},
+	"a very happy fella": {
+		"value": 1,
+		"hint": "need hint"
+	},
+	"has did tax evasion": {
+		"value": -2,
+		"hint": "need hint"
+	},
+	"PISSED ON THE MOON": {
+		"value": -2,
+		"hint": "need hint"
+	},
+	"cyberbullied steve jobs": {
+		"value": -2,
+		"hint": "need hint"
+	},
+	"likes to walk and talk": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"built an orphanage": {
+		"value": 7,
+		"hint": "need hint"
+	},
+	 "saved a guy": {
+		"value": 5,
+		"hint": "need hint"
+	},
+	"filthy rich": {
+		"value": -1,
+		"hint": "need hint"
+	},
+	"nothing really matters to him": {
+		"value": -2,
+		"hint": "need hint"
+	},
+	"killed an eldritch god": {
+		"value": -3,
+		"hint": "need hint"
+	},
+	"good boy :3": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"a very healthy fella": {
+		"value": 4,
+		"hint": "need hint"
+	},
+	"saved a bird": {
+		"value": 3,
+		"hint": "need hint"
+	},
+	"pays his taxes": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"is the child of light": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"could never do wrong": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"solved the fnaf lore": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"hes got a cool hat": {
+		"value": 1,
+		"hint": "need hint"
+	},
+	"weed eater": {
+		"value": 2,
+		"hint": "need hint"
+	},
+	"put some dirt in your eyes": {
+		"value": -1,
+		"hint": "memes about dirt and eyes"
+	}
 }
 
 # person dictionary
@@ -54,6 +160,7 @@ var person_list = {
 var current_person_id = 0
 var last_person_id = -1
 var wrong_choice = false
+var hidden_deeds = []
 
 # Function to pick random deeds
 func pick_random_deeds() -> Dictionary:
@@ -62,7 +169,7 @@ func pick_random_deeds() -> Dictionary:
 	for i in range(GameEvents.deed_count):
 		var deed = deed_list.keys()[randi() % deed_list.size()]
 		selected_deeds.append(deed)
-		total_value += deed_list[deed]
+		total_value += deed_list[deed]["value"]
 	return {"description": ", ".join(selected_deeds), "total_value": total_value}
 
 # Function to assign a random deed
@@ -102,6 +209,10 @@ func hide_words_randomly(description: String) -> String:
 			indices_to_hide.append(index)
 	
 	for i in indices_to_hide:
+		if description.containsn("apollo"):
+			hidden_deeds.append(", ".join([words[i-1], words[i]]))
+		else :
+			hidden_deeds.append(words[i])
 		words[i] = "####"
 	
 	return ", ".join(words)
