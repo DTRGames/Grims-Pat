@@ -3,7 +3,7 @@ extends Button
 func _ready() -> void:
 	await $"../..".ready
 	if $"../..".control.hidden_deeds.is_empty():
-		disabled = true
+		visible = false
 	GameEvents.leave.connect(on_leave)
 
 func _on_pressed() -> void:
@@ -13,14 +13,13 @@ func _on_pressed() -> void:
 		$"../Hint/VBoxContainer".add_child(ins)
 		$"../Hint".visible = true
 	
-	if $"../..".control.hidden_deeds.is_empty():
-		disabled = true
+	visible = false
 
 func on_leave():
 	if $"../..".control.hidden_deeds.is_empty():
-		disabled = true
+		visible = false
 	else :
-		disabled = false
+		visible = true
 	
 	for hint in $"../Hint/VBoxContainer".get_children():
 		hint.queue_free()
