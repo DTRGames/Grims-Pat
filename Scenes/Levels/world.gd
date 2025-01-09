@@ -1,7 +1,7 @@
 extends Node2D
 
 var instance = preload("res://Scenes/Levels/control.tscn")
-var last_spawned_id = -1
+var last_person_id = -1
 var lives = 3
 @onready var control = $Control
 
@@ -12,17 +12,17 @@ func _process(delta):
 func _ready():
 	GameEvents.leave.connect(on_leave)
 	GameEvents.lose_life.connect(lose_life)
-	last_spawned_id = control.current_deed_id
+	last_person_id = control.current_person_id
 
 func on_leave():
 	var ins = instance.instantiate()
 	control = ins
 	
-	if last_spawned_id != -1:
-		control.last_spawned_id = last_spawned_id
+	if last_person_id != -1:
+		control.last_person_id = last_person_id
 	
 	add_child(ins)
-	last_spawned_id = control.current_deed_id
+	last_person_id = control.current_person_id
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	get_tree().change_scene_to_file("res://Scenes/MainMenu/main_menu.tscn")
