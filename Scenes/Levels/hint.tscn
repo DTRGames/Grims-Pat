@@ -1,20 +1,94 @@
-[gd_scene load_steps=2 format=3 uid="uid://gmw2egomwlcu"]
+[gd_scene load_steps=13 format=3 uid="uid://gmw2egomwlcu"]
 
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="1_mcdmk"]
+[ext_resource type="Texture2D" uid="uid://0e1p78f1ulij" path="res://Scenes/Levels/paperSheet1/Paper-Shee2t.png" id="2_hbevc"]
+[ext_resource type="Texture2D" uid="uid://wjc4322k1e8r" path="res://Scenes/Levels/paperSheet1/Paper-Sheet.png" id="2_rwv3t"]
+[ext_resource type="Texture2D" uid="uid://btoqjh06e7mxa" path="res://Scenes/Levels/paperSheet1/Tv.png" id="4_1io7y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dap5r"]
+atlas = ExtResource("2_hbevc")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sewhl"]
+atlas = ExtResource("2_hbevc")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1cjd"]
+atlas = ExtResource("2_hbevc")
+region = Rect2(640, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rxsq"]
+atlas = ExtResource("2_hbevc")
+region = Rect2(960, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3u1gj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dap5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sewhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1cjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rxsq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dym8"]
+atlas = ExtResource("2_rwv3t")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqfq5"]
+atlas = ExtResource("2_rwv3t")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w7dyl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dym8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqfq5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
 
 [node name="Hint" type="Label"]
 z_index = 1
-custom_minimum_size = Vector2(121, 13)
-offset_right = 121.0
-offset_bottom = 13.0
+custom_minimum_size = Vector2(100, 13)
+offset_top = -15.0
+offset_right = 106.0
+offset_bottom = 59.0
 theme_override_fonts/font = ExtResource("1_mcdmk")
-text = "testaaaaaaaa"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Panel" type="ColorRect" parent="."]
+[node name="Tv" type="Sprite2D" parent="."]
 z_index = -1
-layout_mode = 0
-offset_right = 112.0
-offset_bottom = 52.0
+position = Vector2(-22, 76)
+texture = ExtResource("4_1io7y")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(-19, 107)
+sprite_frames = SubResource("SpriteFrames_3u1gj")
+autoplay = "default"
+frame_progress = 0.110213
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+z_index = -1
+position = Vector2(-19, 107)
+sprite_frames = SubResource("SpriteFrames_w7dyl")
+autoplay = "default"
+frame_progress = 0.720934

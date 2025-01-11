@@ -35,7 +35,7 @@ var deed_list = {
 	},
 	"drug addict": {
 		"value": -2,
-		"hint": "sniffed on the daily"
+		"hint": "he sniffed on the daily"
 	},
 	"a very happy fella": {
 		"value": 1,
@@ -47,7 +47,7 @@ var deed_list = {
 	},
 	"PISSED ON THE MOON": {
 		"value": -2,
-		"hint": "he....PISSED ON THE MOON!!! HOW DO YOU LIKE THAT OBAMA?"
+		"hint": "he....PISSED ON THE MOON!!!"
 	},
 	"cyberbullied steve jobs": {
 		"value": -2,
@@ -65,11 +65,11 @@ var deed_list = {
 	},
 	"filthy rich": {
 		"value": -1,
-		"hint": "bro thinks he's the next Elon"
+		"hint": "he thinks he's the next Elon"
 	},
 	"nothing really matters to him": {
 		"value": -2,
-		"hint": "he didn't care about anything, not even about the frightning thunder bolts and lightning"
+		"hint": "he didn't care about anything"
 	},
 	"killed an eldritch god": {
 		"value": -3,
@@ -98,7 +98,7 @@ var deed_list = {
 	},
 	"solved the fnaf lore": {
 		"value": 2,
-		"hint": "bro was Matpat 2.0"
+		"hint": "he was Matpat 2.0"
 	},
 	"hes got a cool hat": {
 		"value": 1,
@@ -188,14 +188,17 @@ func process_deed(person_id: int) -> void:
 	print("Total value: ", random_deeds["total_value"])
 	print("is killable: ", person["killable"])
 
-# Helper function to hide deeds with hints
 func hide_deeds_with_hints(description: String) -> String:
 	var words = description.split(", ")
+	var hidden_count = 0
 	for i in range(words.size()):
+		if hidden_count >= 2:
+			break
 		var deed = words[i].strip_edges()
 		if deed_list.has(deed) and deed_list[deed].has("hint"):
 			hidden_deeds.append(deed)
 			words[i] = "####"
+			hidden_count += 1
 	return ", ".join(words)
 
 # Function to check if a person is a criminal

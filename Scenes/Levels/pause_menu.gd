@@ -27,6 +27,7 @@ func _on_resume_pressed() -> void:
 	visible = false
 
 func _on_restart_pressed() -> void:
+	GameEvents.on_screen = 0
 	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
 func _on_main_menu_pressed() -> void:
