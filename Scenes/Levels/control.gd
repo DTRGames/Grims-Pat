@@ -11,115 +11,105 @@ extends CanvasLayer
 var deed_list = {
 	"has did shoplifting": {
 		"value": -2,
-		"hint": "something is missing"
 	},
 	"stole a banana": {
 		"value": -1,
-		"hint": "enemy of monkey"
 	},
 	"was a victim of magic, Apollo": {
 		"value": -1,
-		"hint": "need hint"
 	},
 	 "has did vehichular manslaughter": {
 		"value": -7,
-		"hint": "need hint"
+		"hint": "drove over some poor soul"
 	},
 	"Killed a very big moth": {
 		"value": 2,
-		"hint": "need hint"
 	},
 	"doesnt smoke": {
 		"value": 3,
-		"hint": "need hint"
+		"hint": "never smoked in his life"
 	},
 	"doesnt drink": {
 		"value": 2,
-		"hint": "need hint"
+		"hint": "never drunk some booze"
 	},
 	"drug addict": {
 		"value": -2,
-		"hint": "need hint"
+		"hint": "sniffed on the daily"
 	},
 	"a very happy fella": {
 		"value": 1,
-		"hint": "need hint"
+		"hint": "always seemed happy"
 	},
 	"has did tax evasion": {
 		"value": -2,
-		"hint": "need hint"
+		"hint": "he.... dear god...even I pay my taxes"
 	},
 	"PISSED ON THE MOON": {
 		"value": -2,
-		"hint": "need hint"
+		"hint": "he....PISSED ON THE MOON!!! HOW DO YOU LIKE THAT OBAMA?"
 	},
 	"cyberbullied steve jobs": {
 		"value": -2,
-		"hint": "need hint"
 	},
 	"likes to walk and talk": {
 		"value": 2,
-		"hint": "need hint"
+		"hint": "he always liked to walk and talk"
 	},
 	"built an orphanage": {
 		"value": 7,
-		"hint": "need hint"
 	},
 	 "saved a guy": {
 		"value": 5,
-		"hint": "need hint"
+		"hint": "saved a lucky soul"
 	},
 	"filthy rich": {
 		"value": -1,
-		"hint": "need hint"
+		"hint": "bro thinks he's the next Elon"
 	},
 	"nothing really matters to him": {
 		"value": -2,
-		"hint": "need hint"
+		"hint": "he didn't care about anything, not even about the frightning thunder bolts and lightning"
 	},
 	"killed an eldritch god": {
 		"value": -3,
-		"hint": "need hint"
+		"hint": "Killed something powerfull :D"
 	},
 	"good boy :3": {
 		"value": 2,
-		"hint": "need hint"
+		"hint": "a very good person"
 	},
 	"a very healthy fella": {
 		"value": 4,
-		"hint": "need hint"
+		"hint": "bro looked like the guy in the old spice commercials"
 	},
 	"saved a bird": {
 		"value": 3,
-		"hint": "need hint"
 	},
 	"pays his taxes": {
 		"value": 2,
-		"hint": "need hint"
+		"hint": "payed his taxes, good"
 	},
 	"is the child of light": {
 		"value": 2,
-		"hint": "need hint"
 	},
 	"could never do wrong": {
 		"value": 2,
-		"hint": "need hint"
 	},
 	"solved the fnaf lore": {
 		"value": 2,
-		"hint": "need hint"
+		"hint": "bro was Matpat 2.0"
 	},
 	"hes got a cool hat": {
 		"value": 1,
-		"hint": "need hint"
+		"hint": "man I love his hat"
 	},
 	"weed eater": {
 		"value": 2,
-		"hint": "need hint"
 	},
 	"put some dirt in your eyes": {
 		"value": -1,
-		"hint": "memes about dirt and eyes"
+		"hint": "dirtied your face with some dirt"
 	}
 }
 
@@ -186,8 +176,8 @@ func process_deed(person_id: int) -> void:
 	var random_deeds = pick_random_deeds()
 	
 	if GameEvents.on_screen > 0:
-		# Hide one to two words in the description
-		random_deeds["description"] = hide_words_randomly(random_deeds["description"])
+		# Hide deeds with hints
+		random_deeds["description"] = hide_deeds_with_hints(random_deeds["description"])
 	
 	person["description"] = random_deeds["description"]
 	person["killable"] = random_deeds["total_value"] < 0
@@ -198,23 +188,14 @@ func process_deed(person_id: int) -> void:
 	print("Total value: ", random_deeds["total_value"])
 	print("is killable: ", person["killable"])
 
-# Helper function to hide one to two words randomly
-func hide_words_randomly(description: String) -> String:
+# Helper function to hide deeds with hints
+func hide_deeds_with_hints(description: String) -> String:
 	var words = description.split(", ")
-	var num_words_to_hide = randi() % 2 + 1  # Hide one to two words
-	var indices_to_hide = []
-	while indices_to_hide.size() < num_words_to_hide:
-		var index = randi() % words.size()
-		if index not in indices_to_hide:
-			indices_to_hide.append(index)
-	
-	for i in indices_to_hide:
-		if description.containsn("apollo"):
-			hidden_deeds.append(", ".join([words[i-1], words[i]]))
-		else :
-			hidden_deeds.append(words[i])
-		words[i] = "####"
-	
+	for i in range(words.size()):
+		var deed = words[i].strip_edges()
+		if deed_list.has(deed) and deed_list[deed].has("hint"):
+			hidden_deeds.append(deed)
+			words[i] = "####"
 	return ", ".join(words)
 
 # Function to check if a person is a criminal

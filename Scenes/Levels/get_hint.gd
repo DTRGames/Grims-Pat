@@ -7,8 +7,8 @@ func _ready() -> void:
 	GameEvents.leave.connect(on_leave)
 
 func _on_pressed() -> void:
-	var conversation_start = "Heya boss, i found this "
-	var additional_hint_start = "Also, I got this from him "
+	var conversation_start = "Heya boss, i found some info "
+	var additional_hint_start = "Also, "
 	var combined_hint = conversation_start
 	
 	for i in range($"../..".control.hidden_deeds.size()):
