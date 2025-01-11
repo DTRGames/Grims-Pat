@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://52216bdnleon"]
+
+[ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="1_vs5l1"]
+
+[node name="Contribution" type="VBoxContainer"]
+
+[node name="Contributing" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_vs5l1")
+text = "Contributing"
+horizontal_alignment = 1
+
+[node name="Link" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_vs5l1")
+text = "Link"

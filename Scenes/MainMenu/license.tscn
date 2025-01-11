@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciwqivbf75eqq"]
+
+[ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="1_hc30l"]
+
+[node name="License" type="VBoxContainer"]
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_hc30l")
+text = "Name"
+horizontal_alignment = 1
+
+[node name="License" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_hc30l")
+text = "License"
+
+[node name="Link" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_hc30l")
+text = "Link"

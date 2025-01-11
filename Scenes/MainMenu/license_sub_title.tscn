@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf13nu2x6fbc7"]
+
+[ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="1_e87ux"]
+
+[node name="LicenseSubTitle" type="VBoxContainer"]
+size_flags_vertical = 0
+
+[node name="SubTitle" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.730216, 0.730216, 0.730216, 1)
+theme_override_fonts/font = ExtResource("1_e87ux")
+text = "SubTitle"
+
+[node name="Licenses" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
