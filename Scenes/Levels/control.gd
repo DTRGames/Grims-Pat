@@ -20,18 +20,18 @@ var deed_list = {
 	},
 	 "has did vehichular manslaughter": {
 		"value": -7,
-		"hint": "drove over some poor soul"
+		"hint": "he drove over some poor soul"
 	},
 	"Killed a very big moth": {
 		"value": 2,
 	},
 	"doesnt smoke": {
 		"value": 3,
-		"hint": "never smoked in his life"
+		"hint": "he never smoked in his life"
 	},
 	"doesnt drink": {
 		"value": 2,
-		"hint": "never drunk some booze"
+		"hint": "he never drunk some booze"
 	},
 	"drug addict": {
 		"value": -2,
@@ -39,7 +39,7 @@ var deed_list = {
 	},
 	"a very happy fella": {
 		"value": 1,
-		"hint": "always seemed happy"
+		"hint": "he always seemed happy"
 	},
 	"has did tax evasion": {
 		"value": -2,
@@ -61,7 +61,7 @@ var deed_list = {
 	},
 	 "saved a guy": {
 		"value": 5,
-		"hint": "saved a lucky soul"
+		"hint": "he saved a lucky soul"
 	},
 	"filthy rich": {
 		"value": -1,
@@ -73,7 +73,7 @@ var deed_list = {
 	},
 	"killed an eldritch god": {
 		"value": -3,
-		"hint": "Killed something powerfull :D"
+		"hint": "Killed something powerfull"
 	},
 	"good boy :3": {
 		"value": 2,
@@ -81,14 +81,14 @@ var deed_list = {
 	},
 	"a very healthy fella": {
 		"value": 4,
-		"hint": "bro looked like the guy in the old spice commercials"
+		"hint": "bro looked really healthy"
 	},
 	"saved a bird": {
 		"value": 3,
 	},
 	"pays his taxes": {
 		"value": 2,
-		"hint": "payed his taxes, good"
+		"hint": "he payed his taxes, good"
 	},
 	"is the child of light": {
 		"value": 2,
@@ -102,14 +102,13 @@ var deed_list = {
 	},
 	"hes got a cool hat": {
 		"value": 1,
-		"hint": "man I love his hat"
+		"hint": "I really love his hat"
 	},
 	"weed eater": {
 		"value": 2,
 	},
 	"put some dirt in your eyes": {
 		"value": -1,
-		"hint": "dirtied your face with some dirt"
 	}
 }
 
