@@ -1,25 +1,25 @@
-[gd_scene load_steps=18 format=3 uid="uid://gmw2egomwlcu"]
+[gd_scene load_steps=18 format=3 uid="uid://cnyefcw0nwhx3"]
 
-[ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="1_mcdmk"]
-[ext_resource type="Texture2D" uid="uid://0e1p78f1ulij" path="res://Scenes/Levels/paperSheet1/Paper-Shee2t.png" id="2_hbevc"]
-[ext_resource type="Texture2D" uid="uid://wjc4322k1e8r" path="res://Scenes/Levels/paperSheet1/Paper-Sheet.png" id="2_rwv3t"]
-[ext_resource type="Script" path="res://Scenes/Levels/hint.gd" id="2_xi715"]
-[ext_resource type="Texture2D" uid="uid://btoqjh06e7mxa" path="res://Scenes/Levels/paperSheet1/Tv.png" id="4_1io7y"]
+[ext_resource type="Script" path="res://Scenes/Levels/hint.gd" id="1_ad4un"]
+[ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="2_lswm7"]
+[ext_resource type="Texture2D" uid="uid://btoqjh06e7mxa" path="res://Scenes/Levels/paperSheet1/Tv.png" id="4_4f0gf"]
+[ext_resource type="Texture2D" uid="uid://0e1p78f1ulij" path="res://Scenes/Levels/paperSheet1/Paper-Shee2t.png" id="5_ccyoq"]
+[ext_resource type="Texture2D" uid="uid://wjc4322k1e8r" path="res://Scenes/Levels/paperSheet1/Paper-Sheet.png" id="6_0uvl8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dap5r"]
-atlas = ExtResource("2_hbevc")
+atlas = ExtResource("5_ccyoq")
 region = Rect2(0, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sewhl"]
-atlas = ExtResource("2_hbevc")
+atlas = ExtResource("5_ccyoq")
 region = Rect2(320, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t1cjd"]
-atlas = ExtResource("2_hbevc")
+atlas = ExtResource("5_ccyoq")
 region = Rect2(640, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8rxsq"]
-atlas = ExtResource("2_hbevc")
+atlas = ExtResource("5_ccyoq")
 region = Rect2(960, 0, 320, 180)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3u1gj"]
@@ -43,11 +43,11 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2dym8"]
-atlas = ExtResource("2_rwv3t")
+atlas = ExtResource("6_0uvl8")
 region = Rect2(0, 0, 320, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqfq5"]
-atlas = ExtResource("2_rwv3t")
+atlas = ExtResource("6_0uvl8")
 region = Rect2(320, 0, 320, 180)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w7dyl"]
@@ -64,7 +64,7 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="Animation" id="Animation_o83da"]
+[sub_resource type="Animation" id="Animation_kv1e7"]
 resource_name = "In"
 length = 3.0
 step = 0.1
@@ -78,12 +78,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-4, -108), Vector2(-4, -5)]
+"values": [Vector2(186, -89), Vector2(186, 14)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible_ratio")
+tracks/1/path = NodePath("Label:visible_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -93,7 +93,8 @@ tracks/1/keys = {
 "values": [0.0, 0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_fl4ro"]
+[sub_resource type="Animation" id="Animation_0dym3"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -105,12 +106,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-4, -15)]
+"values": [Vector2(186, -89)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible_ratio")
+tracks/1/path = NodePath("Label:visible_ratio")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -120,7 +121,7 @@ tracks/1/keys = {
 "values": [0.0]
 }
 
-[sub_resource type="Animation" id="Animation_xex8y"]
+[sub_resource type="Animation" id="Animation_0ku50"]
 resource_name = "out"
 step = 0.1
 tracks/0/type = "value"
@@ -133,35 +134,36 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-4, -108), Vector2(-4, -5)]
+"values": [Vector2(186, -89), Vector2(186, 14)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_810gd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7ylo"]
 _data = {
-"In": SubResource("Animation_o83da"),
-"RESET": SubResource("Animation_fl4ro"),
-"out": SubResource("Animation_xex8y")
+"In": SubResource("Animation_kv1e7"),
+"RESET": SubResource("Animation_0dym3"),
+"out": SubResource("Animation_0ku50")
 }
 
-[node name="Hint" type="Label"]
+[node name="Hint" type="Node2D"]
+position = Vector2(186, -89)
+script = ExtResource("1_ad4un")
+
+[node name="Label" type="Label" parent="."]
 z_index = 1
 custom_minimum_size = Vector2(90, 13)
-offset_left = -4.0
-offset_top = -108.0
-offset_right = 86.0
-offset_bottom = -25.0
-theme_override_fonts/font = ExtResource("1_mcdmk")
+offset_right = 90.0
+offset_bottom = 83.0
+theme_override_fonts/font = ExtResource("2_lswm7")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 visible_characters = 0
 visible_ratio = 0.0
-script = ExtResource("2_xi715")
 
 [node name="Tv" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(-22, 76)
-texture = ExtResource("4_1io7y")
+texture = ExtResource("4_4f0gf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -1
@@ -179,7 +181,7 @@ frame_progress = 0.359952
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_810gd")
+"": SubResource("AnimationLibrary_n7ylo")
 }
 autoplay = "In"
 

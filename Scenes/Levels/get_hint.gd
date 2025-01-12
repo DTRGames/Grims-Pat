@@ -20,8 +20,8 @@ func _on_pressed() -> void:
 	
 	if combined_hint != conversation_start:
 		var ins = preload("res://Scenes/Levels/hint.tscn").instantiate()
-		ins.text = combined_hint.strip_edges()  # Removing any trailing whitespace
-		$"../../Hint/VBoxContainer".add_child(ins)
+		ins.get_node("Label").text = combined_hint.strip_edges()  # Removing any trailing whitespace
+		$"../../Hint".add_child(ins)
 		$"../../Hint".visible = true
 	
 	get_parent().visible = false
@@ -33,7 +33,7 @@ func on_leave():
 	else:
 		get_parent().visible = true
 	
-	for hint in $"../../Hint/VBoxContainer".get_children():
+	for hint in $"../../Hint".get_children():
 		hint.out()
 		await hint.animation_player.animation_finished
 		hint.queue_free()
