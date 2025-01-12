@@ -7,7 +7,7 @@ var lives = 3
 var time_passed : float
 
 @onready var pause_menu = $CanvasLayer/PauseMenu
-
+@onready var lives_node = $CanvasLayer/Lives
 @onready var control = $Control
 
 func _process(delta):
@@ -33,9 +33,18 @@ func on_leave():
 
 
 
+func update_hearts():
+	var children = lives_node.get_children()
+	for i in range(3):
+		if i < lives:
+			children[i].show()
+		else:
+			children[i].hide()
+
+
 func lose_life():
 	lives -= 1
-	$CanvasLayer/Lives/Label.text = "lives: " + str(lives)
+	update_hearts()
 	if lives == 0:
 		GameEvents.game_over.emit()
 

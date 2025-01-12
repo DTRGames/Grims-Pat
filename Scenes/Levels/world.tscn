@@ -1,13 +1,50 @@
-[gd_scene load_steps=34 format=4 uid="uid://ivohauh2bvd4"]
+[gd_scene load_steps=40 format=4 uid="uid://ivohauh2bvd4"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/world.gd" id="1_03klo"]
 [ext_resource type="PackedScene" uid="uid://da1nf55g0ar8d" path="res://Scenes/Levels/control.tscn" id="1_xplog"]
+[ext_resource type="Texture2D" uid="uid://bt4qddfbrlxkj" path="res://Scenes/Levels/paperSheet/BG.png" id="3_6n0ie"]
 [ext_resource type="Script" path="res://Scenes/Levels/pause_menu.gd" id="3_55f3v"]
 [ext_resource type="FontFile" uid="uid://e4m514wv3fa3" path="res://Scenes/Levels/m6x11 (1).ttf" id="3_86ped"]
 [ext_resource type="Texture2D" uid="uid://b1xiblhuybw6r" path="res://Scenes/Levels/paperSheet/Paper-Sheet.png" id="3_bkdil"]
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="4_prqbg"]
 [ext_resource type="Texture2D" uid="uid://d1mvc5kstycfa" path="res://Scenes/Levels/paperSheet1/Button.png" id="6_y7ca4"]
 [ext_resource type="Script" path="res://Scenes/Levels/get_hint.gd" id="7_jq6ks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgsb6"]
+atlas = ExtResource("3_bkdil")
+region = Rect2(0, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqp3u"]
+atlas = ExtResource("3_bkdil")
+region = Rect2(320, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ivc7"]
+atlas = ExtResource("3_bkdil")
+region = Rect2(640, 0, 320, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aah6x"]
+atlas = ExtResource("3_bkdil")
+region = Rect2(960, 0, 320, 180)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0y8eo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgsb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqp3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ivc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aah6x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [sub_resource type="Animation" id="Animation_n7n78"]
 resource_name = "In"
@@ -472,7 +509,7 @@ script = ExtResource("1_03klo")
 
 [node name="Paper-sheet" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
-texture = ExtResource("3_bkdil")
+texture = ExtResource("3_6n0ie")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
@@ -483,17 +520,23 @@ anchors_preset = 0
 offset_right = 88.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="CanvasLayer/Lives"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 230.0
-offset_right = 276.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 14
-text = "lives: 3"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Lives"]
+position = Vector2(168, 90)
+sprite_frames = SubResource("SpriteFrames_0y8eo")
+autoplay = "default"
+frame_progress = 0.742183
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/Lives"]
+position = Vector2(144, 90)
+sprite_frames = SubResource("SpriteFrames_0y8eo")
+autoplay = "default"
+frame_progress = 0.0162911
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/Lives"]
+position = Vector2(120, 90)
+sprite_frames = SubResource("SpriteFrames_0y8eo")
+autoplay = "default"
+frame_progress = 0.88796
 
 [node name="GameOver" type="Control" parent="CanvasLayer"]
 visible = false
@@ -568,6 +611,7 @@ text = "CALL JOEY"
 
 [node name="PauseMenu" type="Control" parent="CanvasLayer"]
 visible = false
+z_index = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
