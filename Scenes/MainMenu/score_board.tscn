@@ -141,6 +141,7 @@ _data = {
 
 [node name="ScoreBoard" type="CanvasLayer"]
 process_mode = 3
+layer = 3
 script = ExtResource("1_yda40")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
