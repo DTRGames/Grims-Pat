@@ -1019,6 +1019,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_l1o6q")
 text = "Normal"
 
 [node name="Description" type="Label" parent="Difficulty"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1035,7 +1036,7 @@ theme_override_colors/font_color = Color(0.011, 0.66, 0, 1)
 theme_override_fonts/font = ExtResource("1_xpdq4")
 text = "3 deeds to consider"
 
-[node name="Back" type="Button" parent="Difficulty"]
+[node name="DifficultyBack" type="Button" parent="Difficulty"]
 custom_minimum_size = Vector2(20, 21)
 layout_mode = 2
 offset_left = 7.0
@@ -1194,7 +1195,7 @@ text = "Back"
 [connection signal="mouse_entered" from="Difficulty/Normal" to="." method="_on_normal_mouse_entered"]
 [connection signal="mouse_exited" from="Difficulty/Normal" to="." method="_on_normal_mouse_exited"]
 [connection signal="pressed" from="Difficulty/Normal" to="." method="_on_normal_pressed"]
-[connection signal="pressed" from="Difficulty/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Difficulty/DifficultyBack" to="." method="_on_difficulty_back_pressed"]
 [connection signal="pressed" from="Settings/WindowButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Settings/SettingsBack" to="." method="_on_settings_back_pressed"]
 [connection signal="pressed" from="CreditsScreen/CreditsBack" to="." method="_on_credits_back_pressed"]
