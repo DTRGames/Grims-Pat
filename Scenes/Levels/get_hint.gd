@@ -1,5 +1,8 @@
 extends Button
 
+@onready var animation_player = $"../../AnimationPlayer"
+@onready var sprite_2d = $".."
+
 func _ready() -> void:
 	await $"../../..".ready
 	if $"../../..".control.hidden_deeds.is_empty():
@@ -22,18 +25,38 @@ func _on_pressed() -> void:
 		var ins = preload("res://Scenes/Levels/hint.tscn").instantiate()
 		ins.get_node("Label").text = combined_hint.strip_edges()  # Removing any trailing whitespace
 		$"../../Hint".add_child(ins)
+		
+		
 		$"../../Hint".visible = true
+	
+	sprite_2d.modulate = "ffffff"
+	
+	animation_player.play_backwards("out")
+	await animation_player.animation_finished
 	
 	get_parent().visible = false
 
 func on_leave():
 	
 	if $"../../..".control.hidden_deeds.is_empty():
+		
+		animation_player.play_backwards("out")
+		await animation_player.animation_finished
 		get_parent().visible = false
 	else:
+		
+		animation_player.play("out")
 		get_parent().visible = true
 	
 	for hint in $"../../Hint".get_children():
 		hint.out()
 		await hint.animation_player.animation_finished
 		hint.queue_free()
+
+
+func _on_mouse_entered():
+	sprite_2d.modulate = "e3e3e3"
+
+
+func _on_mouse_exited():
+	sprite_2d.modulate = "ffffff"
