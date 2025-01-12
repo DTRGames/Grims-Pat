@@ -1,51 +1,45 @@
 extends Control
 
-@onready var window_button = $Settings/WindowButton
-@onready var settings = $Settings
 @onready var settings_button = $SettingsButton
 @onready var credits_button = $CreditsButton
+@onready var start_button = $Start
+@onready var quit_button = $Quit
+@onready var title = $Title
+@onready var settings = $Settings
+@onready var window_button = $Settings/WindowButton
 @onready var credits_screen = $CreditsScreen
+@onready var difficulty = $Difficulty
+@onready var difficulty_description = $Difficulty/Description
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"escape"):
-		if $Difficulty.visible:
-			$Difficulty/Description.visible = false
-			$Title.visible = true
-			$Start.visible = true
-			$Quit.visible = true
-			credits_button.visible = true
-			settings_button.visible = true
-			$Difficulty.visible = false
-			credits_screen.visible = false
+		if difficulty.visible:
+			show_beginning()
+			difficulty_description.visible = false
 
 func _ready():
 	update_display()
 
 func _on_start_pressed() -> void:
-	$Difficulty.visible = true
-	settings_button.visible = false
-	credits_button.visible = false
-	$Title.visible = false
-	$Start.visible = false
-	$Quit.visible = false
-	credits_screen.visible = false
+	hide_beginning()
+	difficulty.visible = true
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_easy_mouse_entered() -> void:
-	$Difficulty/Description.text = "3 deeds to consider"
-	$Difficulty/Description.visible = true
+	difficulty_description.text = "3 deeds to consider"
+	difficulty_description.visible = true
 
 func _on_easy_mouse_exited() -> void:
-	$Difficulty/Description.visible = false
+	difficulty_description.visible = false
 
 func _on_normal_mouse_entered() -> void:
-	$Difficulty/Description.text = "5 deeds to consider"
-	$Difficulty/Description.visible = true
+	difficulty_description.text = "5 deeds to consider"
+	difficulty_description.visible = true
 
 func _on_normal_mouse_exited() -> void:
-	$Difficulty/Description.visible = false
+	difficulty_description.visible = false
 
 func _on_easy_pressed() -> void:
 	GameEvents.deed_count = 3
@@ -55,30 +49,15 @@ func _on_normal_pressed() -> void:
 	GameEvents.deed_count = 5
 	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
-func _on_back_pressed() -> void:
-	$Difficulty/Description.visible = false
-	$Title.visible = true
-	$Start.visible = true
-	$Quit.visible = true
-	settings_button.visible = true
-	credits_button.visible = true
-	$Difficulty.visible = false
-	credits_screen.visible = false
-
+func _on_difficulty_back_pressed() -> void:
+	show_beginning()
+	difficulty.visible = false
 
 func _on_settings_pressed():
-	$Difficulty/Description.visible = false
-	$Title.visible = false
-	$Start.visible = false
-	$Quit.visible = false
-	$Difficulty.visible = false
+	hide_beginning()
 	settings.visible = true
-	settings_button.visible = false
-	credits_button.visible = false
-	credits_screen.visible = false
 
 func update_display():
-	
 	window_button.text = "windowed"
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		window_button.text = "FullScreen"
@@ -91,41 +70,30 @@ func _on_button_pressed():
 		DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	
-	
 	update_display()
 
+func show_beginning():
+	title.visible = true
+	start_button.visible = true
+	quit_button.visible = true
+	credits_button.visible = true
+	settings_button.visible = true
+
+func hide_beginning():
+	title.visible = false
+	start_button.visible = false
+	quit_button.visible = false
+	credits_button.visible = false
+	settings_button.visible = false
 
 func _on_settings_back_pressed():
-	$Difficulty/Description.visible = false
-	$Title.visible = true
-	$Start.visible = true
-	$Quit.visible = true
-	credits_button.visible = true
-	$Difficulty.visible = false
-	settings_button.visible = true
+	show_beginning()
 	settings.visible = false
-	credits_screen.visible = false
-
 
 func _on_credits_button_pressed() -> void:
-	$Difficulty/Description.visible = false
-	$Title.visible = false
-	$Start.visible = false
-	$Quit.visible = false
-	$Difficulty.visible = false
-	settings.visible = false
-	settings_button.visible = false
-	credits_button.visible = false
+	hide_beginning()
 	credits_screen.visible = true
 
-
 func _on_credits_back_pressed() -> void:
-	$Difficulty/Description.visible = false
-	$Title.visible = true
-	$Start.visible = true
-	$Quit.visible = true
-	credits_button.visible = true
-	$Difficulty.visible = false
-	settings_button.visible = true
-	settings.visible = false
+	show_beginning()
 	credits_screen.visible = false
