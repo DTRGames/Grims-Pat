@@ -3,13 +3,13 @@ extends Control
 var contribution = {
 	1: {
 		"SubTitle": "PROGRAMMER",
-		"Contributing": ["person 1", "person 2"],
-		"Link": ["person 1 link", "person 2 link"]
+		"Contributing": ["Dman", "Noob"],
+		"Link": ["https://dtrgames.itch.io/", "person 2 link"]
 	},
 	2: {
 		"SubTitle": "GRAPHICS",
-		"Contributing": ["person 1", "person 2"],
-		"Link": ["person 1 link", "person 2 link"]
+		"Contributing": ["Dman", "Tman"],
+		"Link": ["https://dtrgames.itch.io/", "https://www.reddit.com/user/No_Kangaroo_8762/"]
 	},
 	3: {
 		"SubTitle": "MUSIC/SFX",
