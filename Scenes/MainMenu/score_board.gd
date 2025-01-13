@@ -63,4 +63,5 @@ func set_text_won():
 
 
 func _on_button_pressed():
+	GameEvents.on_screen = 0
 	SceneTransion.transion("res://Scenes/MainMenu/main_menu.tscn")
