@@ -10,7 +10,24 @@ var lives: float
 @onready var final_score_label = $Node/FinalScore
 @onready var lost_life = $Node/LostLife
 @onready var title = $Node/Title
+@onready var animation_player = $AnimationPlayer
+@onready var win = $Control/Win
+@onready var lose = $Control/Lose
+@onready var control = $Control
 
+func _ready() -> void:
+	animation_player.play("Enter")
+	await animation_player.animation_finished
+	if lives <= 0:
+		lose.visible = true
+		animation_player.play("Lose")
+	else :
+		win.visible = true
+		animation_player.play("Win")
+	await animation_player.animation_finished
+	control.visible = false
+	animation_player.play("Score")
+	
 
 func calculate_score() -> float:
 	if time < 300:  # Less than 5 minutes
@@ -44,6 +61,7 @@ func set_text_gameover():
 func set_text_won():
 	title.text = str("YOU WON")
 
-
 func _on_button_pressed():
+	GameEvents.on_screen = 0
+	animation_player.play("RESET")
 	SceneTransion.transion("res://Scenes/MainMenu/main_menu.tscn")
