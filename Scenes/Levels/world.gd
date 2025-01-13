@@ -13,7 +13,7 @@ var win_on_screen : int
 
 func _process(delta):
 	time_passed += delta
-	if GameEvents.on_screen == win_on_screen:
+	if GameEvents.on_screen >= win_on_screen:
 		GameEvents.game_over.emit()
 
 func _ready():
