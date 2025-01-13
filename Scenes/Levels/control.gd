@@ -106,9 +106,6 @@ var deed_list = {
 	},
 	"weed eater": {
 		"value": 2,
-	},
-	"put some dirt in your eyes": {
-		"value": -1,
 	}
 }
 
