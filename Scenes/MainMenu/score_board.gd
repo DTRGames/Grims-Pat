@@ -61,7 +61,7 @@ func set_text_gameover():
 func set_text_won():
 	title.text = str("YOU WON")
 
-
 func _on_button_pressed():
 	GameEvents.on_screen = 0
+	animation_player.play("RESET")
 	SceneTransion.transion("res://Scenes/MainMenu/main_menu.tscn")
