@@ -9,10 +9,11 @@ var time_passed : float
 @onready var pause_menu = $CanvasLayer/PauseMenu
 @onready var lives_node = $CanvasLayer/Lives
 @onready var control = $Control
+var win_on_screen : int
 
 func _process(delta):
 	time_passed += delta
-	if GameEvents.on_screen == randf_range(40, 50):
+	if GameEvents.on_screen == win_on_screen:
 		GameEvents.game_over.emit()
 
 func _ready():
@@ -20,6 +21,7 @@ func _ready():
 	GameEvents.leave.connect(on_leave)
 	GameEvents.lose_life.connect(lose_life)
 	last_person_id = control.current_person_id
+	win_on_screen = randi_range(40, 50)
 
 func on_leave():
 	var ins = instance.instantiate()
@@ -31,8 +33,6 @@ func on_leave():
 	add_child(ins)
 	last_person_id = control.current_person_id
 
-
-
 func update_hearts():
 	var children = lives_node.get_children()
 	for i in range(3):
@@ -40,7 +40,6 @@ func update_hearts():
 			children[i].show()
 		else:
 			children[i].hide()
-
 
 func lose_life():
 	lives -= 1

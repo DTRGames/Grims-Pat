@@ -148,7 +148,7 @@ var person_list = {
 
 var current_person_id = 0
 var last_person_id = -1
-var wrong_choice = false
+var killable = false
 var hidden_deeds = []
 
 # Function to pick random deeds
@@ -212,8 +212,8 @@ func on_pressed():
 	button_2.disabled = true
 	button.disabled = true
 	
-	wrong_choice = is_killable(current_person_id)
-	if wrong_choice:
+	killable = is_killable(current_person_id)
+	if killable:
 		print("Wrong person! This person is innocent.")
 		GameEvents.lose_life.emit()
 	else:
@@ -229,8 +229,8 @@ func on_pressed2():
 	button_2.disabled = true
 	button.disabled = true
 	
-	wrong_choice = is_killable(current_person_id)
-	if wrong_choice:
+	killable = is_killable(current_person_id)
+	if killable:
 		print("Correct! Score: ",GameEvents.on_screen)
 		GameEvents.on_screen += 1
 	else:
