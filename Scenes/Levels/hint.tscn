@@ -234,14 +234,14 @@ z_index = -1
 position = Vector2(-26, 115)
 sprite_frames = SubResource("SpriteFrames_3u1gj")
 autoplay = "default"
-frame_progress = 0.489378
+frame_progress = 0.55638
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 z_index = -1
 position = Vector2(-26, 115)
 sprite_frames = SubResource("SpriteFrames_w7dyl")
 autoplay = "default"
-frame_progress = 0.139997
+frame_progress = 0.206999
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -250,7 +250,7 @@ libraries = {
 autoplay = "In"
 
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
-volume_db = 11.043
+volume_db = 4.0
 bus = &"SFX"
 script = ExtResource("6_usesn")
 streams = Array[AudioStream]([ExtResource("7_gdl5c")])

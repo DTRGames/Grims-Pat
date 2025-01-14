@@ -1,10 +1,12 @@
-[gd_scene load_steps=40 format=4 uid="uid://dw0mykn1gr1sx"]
+[gd_scene load_steps=48 format=4 uid="uid://dw0mykn1gr1sx"]
 
 [ext_resource type="Script" path="res://Scenes/MainMenu/main_menu.gd" id="1_6jra8"]
 [ext_resource type="Shader" path="res://Scenes/MainMenu/main_menu_fire.gdshader" id="1_wdqgs"]
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="1_xpdq4"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/h_slider.gd" id="4_0rpd0"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/credits_screen.gd" id="4_ptyw1"]
 [ext_resource type="Script" path="res://Sounds/RandomSounds.gd" id="5_vdg83"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/music_slider.gd" id="5_wpmcm"]
 [ext_resource type="AudioStream" uid="uid://c4rgy74dxygdm" path="res://Sounds/click (17).wav" id="6_6531j"]
 [ext_resource type="AudioStream" uid="uid://bsfjrl5xht7fl" path="res://Sounds/click (18).wav" id="7_0w1m1"]
 
@@ -446,6 +448,31 @@ content_margin_bottom = 1.0
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_msy5e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_al2mt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8scor"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grrfc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2uwr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uflwe"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_bj8h8"]
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjihx"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="Image" id="Image_u5gg5"]
 data = {
@@ -1124,6 +1151,58 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_vftiq")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_l1o6q")
 text = "Back"
 
+[node name="HSlider" type="HSlider" parent="Settings"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 98.0
+offset_right = 198.0
+offset_bottom = 114.0
+focus_mode = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_8scor")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_grrfc")
+theme_override_icons/grabber_disabled = SubResource("AtlasTexture_b2uwr")
+theme_override_icons/tick = SubResource("AtlasTexture_uflwe")
+theme_override_styles/slider = SubResource("StyleBoxLine_bj8h8")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fjihx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_fjihx")
+script = ExtResource("4_0rpd0")
+bus_name = "SFX"
+
+[node name="Label" type="Label" parent="Settings/HSlider"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -10.0
+offset_right = 47.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("1_xpdq4")
+text = "SFX"
+
+[node name="HSlider2" type="HSlider" parent="Settings"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 119.0
+offset_right = 198.0
+offset_bottom = 135.0
+focus_mode = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_8scor")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_grrfc")
+theme_override_icons/grabber_disabled = SubResource("AtlasTexture_b2uwr")
+theme_override_icons/tick = SubResource("AtlasTexture_uflwe")
+theme_override_styles/slider = SubResource("StyleBoxLine_bj8h8")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fjihx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_fjihx")
+script = ExtResource("5_wpmcm")
+bus_name = "Music"
+
+[node name="Label" type="Label" parent="Settings/HSlider2"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -10.0
+offset_right = 51.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("1_xpdq4")
+text = "Music"
+
 [node name="CreditsScreen" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -1189,6 +1268,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_ovpiu")
 text = "Back"
 
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = -9.0
 bus = &"SFX"
 script = ExtResource("5_vdg83")
 streams = Array[AudioStream]([ExtResource("6_6531j"), ExtResource("7_0w1m1")])

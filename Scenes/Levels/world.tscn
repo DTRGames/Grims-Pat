@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://ivohauh2bvd4"]
+[gd_scene load_steps=51 format=4 uid="uid://ivohauh2bvd4"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/world.gd" id="1_03klo"]
 [ext_resource type="PackedScene" uid="uid://da1nf55g0ar8d" path="res://Scenes/Levels/control.tscn" id="1_xplog"]
@@ -9,9 +9,10 @@
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="4_prqbg"]
 [ext_resource type="Texture2D" uid="uid://d1mvc5kstycfa" path="res://Scenes/Levels/paperSheet1/Button.png" id="6_y7ca4"]
 [ext_resource type="Script" path="res://Scenes/Levels/get_hint.gd" id="7_jq6ks"]
-[ext_resource type="AudioStream" uid="uid://bdokh68de68rp" path="res://Sounds/pixel-245147 (1).mp3" id="8_rwtbr"]
 [ext_resource type="Script" path="res://Sounds/RandomSounds.gd" id="10_g0j8i"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/h_slider.gd" id="10_odlgi"]
 [ext_resource type="AudioStream" uid="uid://c4rgy74dxygdm" path="res://Sounds/click (17).wav" id="11_60nfb"]
+[ext_resource type="Script" path="res://Scenes/MainMenu/music_slider.gd" id="11_tny3s"]
 [ext_resource type="AudioStream" uid="uid://bsfjrl5xht7fl" path="res://Sounds/click (18).wav" id="12_lic56"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgsb6"]
@@ -468,6 +469,31 @@ content_margin_bottom = 1.0
 content_margin_left = 1.0
 content_margin_bottom = 1.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_axuwh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jli2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy8om"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca7ju"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hycba"]
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inpkp"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="Animation" id="Animation_7i7pq"]
 length = 0.001
 tracks/0/type = "value"
@@ -511,10 +537,6 @@ script = ExtResource("1_03klo")
 
 [node name="Control" parent="." instance=ExtResource("1_xplog")]
 
-[node name="Pixel-245147(1)" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-6, 264)
-stream = ExtResource("8_rwtbr")
-
 [node name="Paper-sheet" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 texture = ExtResource("3_6n0ie")
@@ -529,19 +551,19 @@ offset_right = 88.0
 offset_bottom = 40.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Lives"]
-position = Vector2(168, 90)
+position = Vector2(174, 90)
 sprite_frames = SubResource("SpriteFrames_0y8eo")
 autoplay = "default"
-frame_progress = 0.742183
+frame_progress = 0.684012
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/Lives"]
-position = Vector2(144, 90)
+position = Vector2(150, 90)
 sprite_frames = SubResource("SpriteFrames_0y8eo")
 autoplay = "default"
 frame_progress = 0.0162911
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="CanvasLayer/Lives"]
-position = Vector2(120, 90)
+position = Vector2(126, 90)
 sprite_frames = SubResource("SpriteFrames_0y8eo")
 autoplay = "default"
 frame_progress = 0.88796
@@ -781,7 +803,58 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_cog3k")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8mvt")
 text = "Back"
 
+[node name="HSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Settings"]
+offset_left = 118.0
+offset_top = 98.0
+offset_right = 198.0
+offset_bottom = 114.0
+focus_mode = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_axuwh")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_2jli2")
+theme_override_icons/grabber_disabled = SubResource("AtlasTexture_dy8om")
+theme_override_icons/tick = SubResource("AtlasTexture_ca7ju")
+theme_override_styles/slider = SubResource("StyleBoxLine_hycba")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_inpkp")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_inpkp")
+script = ExtResource("10_odlgi")
+bus_name = "SFX"
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/Settings/HSlider"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = -10.0
+offset_right = 47.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("4_prqbg")
+text = "SFX"
+
+[node name="HSlider2" type="HSlider" parent="CanvasLayer/PauseMenu/Settings"]
+offset_left = 118.0
+offset_top = 119.0
+offset_right = 198.0
+offset_bottom = 135.0
+focus_mode = 0
+theme_override_icons/grabber = SubResource("AtlasTexture_axuwh")
+theme_override_icons/grabber_highlight = SubResource("AtlasTexture_2jli2")
+theme_override_icons/grabber_disabled = SubResource("AtlasTexture_dy8om")
+theme_override_icons/tick = SubResource("AtlasTexture_ca7ju")
+theme_override_styles/slider = SubResource("StyleBoxLine_hycba")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_inpkp")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_inpkp")
+script = ExtResource("11_tny3s")
+bus_name = "Music"
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/Settings/HSlider2"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -10.0
+offset_right = 51.0
+offset_bottom = 4.0
+theme_override_fonts/font = ExtResource("4_prqbg")
+text = "Music"
+
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/PauseMenu"]
+volume_db = -9.0
 bus = &"SFX"
 script = ExtResource("10_g0j8i")
 streams = Array[AudioStream]([ExtResource("11_60nfb"), ExtResource("12_lic56")])
