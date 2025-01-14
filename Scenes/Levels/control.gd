@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var animation_player = $AnimationPlayer
 @onready var button = $Control/Button
 @onready var button_2 = $Control/Button2
+@onready var click_sound = $ClickSound
 
 # List of deeds with values
 var deed_list = {
@@ -241,6 +242,16 @@ func on_pressed2():
 
 func _on_button_pressed():
 	on_pressed()
+	click_sound.play_random()
 
 func _on_button_2_pressed():
+	click_sound.play_random()
 	on_pressed2()
+
+
+func _on_button_2_mouse_entered():
+	click_sound.play_random()
+
+
+func _on_button_mouse_entered():
+	click_sound.play_random()

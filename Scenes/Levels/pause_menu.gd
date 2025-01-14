@@ -3,6 +3,7 @@ extends Control
 var stop : bool = false
 
 @onready var v_box_container = $Panel/VBoxContainer
+@onready var click_sound = $ClickSound
 
 @onready var window_button = $Settings/WindowButton
 @onready var settings_back = $Settings/SettingsBack
@@ -62,3 +63,28 @@ func _on_settings_pressed():
 	title.visible = false
 	settings_back.visible = true
 	settings.visible = true
+
+
+func _on_resume_mouse_entered():
+	click_sound.play_random()
+
+
+func _on_restart_mouse_entered():
+	click_sound.play_random()
+
+
+func _on_settings_mouse_entered():
+	click_sound.play_random()
+
+
+func _on_main_menu_mouse_entered():
+	GameEvents.on_screen = 0
+	click_sound.play_random()
+
+
+func _on_window_button_mouse_entered():
+	click_sound.play_random()
+
+
+func _on_settings_back_mouse_entered():
+	click_sound.play_random()

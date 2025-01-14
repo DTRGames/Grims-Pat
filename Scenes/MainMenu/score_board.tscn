@@ -211,7 +211,14 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eqocu"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t80ku"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84vs8"]
+content_margin_left = 2.0
+content_margin_top = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v7fdc"]
 
@@ -406,7 +413,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_oxtlt")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qgyi8")
 theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glxsm")
 theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_eqocu")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_t80ku")
+theme_override_styles/hover = SubResource("StyleBoxFlat_84vs8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_v7fdc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nt56a")
 text = "MAIN MENU"

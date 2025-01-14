@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://ivohauh2bvd4"]
+[gd_scene load_steps=44 format=4 uid="uid://ivohauh2bvd4"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/world.gd" id="1_03klo"]
 [ext_resource type="PackedScene" uid="uid://da1nf55g0ar8d" path="res://Scenes/Levels/control.tscn" id="1_xplog"]
@@ -9,6 +9,10 @@
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="4_prqbg"]
 [ext_resource type="Texture2D" uid="uid://d1mvc5kstycfa" path="res://Scenes/Levels/paperSheet1/Button.png" id="6_y7ca4"]
 [ext_resource type="Script" path="res://Scenes/Levels/get_hint.gd" id="7_jq6ks"]
+[ext_resource type="AudioStream" uid="uid://bdokh68de68rp" path="res://Sounds/pixel-245147 (1).mp3" id="8_rwtbr"]
+[ext_resource type="Script" path="res://Sounds/RandomSounds.gd" id="10_g0j8i"]
+[ext_resource type="AudioStream" uid="uid://c4rgy74dxygdm" path="res://Sounds/click (17).wav" id="11_60nfb"]
+[ext_resource type="AudioStream" uid="uid://bsfjrl5xht7fl" path="res://Sounds/click (18).wav" id="12_lic56"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgsb6"]
 atlas = ExtResource("3_bkdil")
@@ -507,6 +511,10 @@ script = ExtResource("1_03klo")
 
 [node name="Control" parent="." instance=ExtResource("1_xplog")]
 
+[node name="Pixel-245147(1)" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-6, 264)
+stream = ExtResource("8_rwtbr")
+
 [node name="Paper-sheet" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 texture = ExtResource("3_6n0ie")
@@ -773,6 +781,11 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_cog3k")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v8mvt")
 text = "Back"
 
+[node name="ClickSound" type="AudioStreamPlayer2D" parent="CanvasLayer/PauseMenu"]
+bus = &"SFX"
+script = ExtResource("10_g0j8i")
+streams = Array[AudioStream]([ExtResource("11_60nfb"), ExtResource("12_lic56")])
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 libraries = {
 "": SubResource("AnimationLibrary_i08xp")
@@ -782,9 +795,15 @@ libraries = {
 [connection signal="mouse_entered" from="CanvasLayer/Sprite2D/GetHint" to="CanvasLayer/Sprite2D/GetHint" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Sprite2D/GetHint" to="CanvasLayer/Sprite2D/GetHint" method="_on_mouse_exited"]
 [connection signal="pressed" from="CanvasLayer/Sprite2D/GetHint" to="CanvasLayer/Sprite2D/GetHint" method="_on_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Resume" to="CanvasLayer/PauseMenu" method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Restart" to="CanvasLayer/PauseMenu" method="_on_restart_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Restart" to="CanvasLayer/PauseMenu" method="_on_restart_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Settings" to="CanvasLayer/PauseMenu" method="_on_settings_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/Settings" to="CanvasLayer/PauseMenu" method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/MainMenu" to="CanvasLayer/PauseMenu" method="_on_main_menu_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Panel/VBoxContainer/MainMenu" to="CanvasLayer/PauseMenu" method="_on_main_menu_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Settings/WindowButton" to="CanvasLayer/PauseMenu" method="_on_window_button_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Settings/WindowButton" to="CanvasLayer/PauseMenu" method="_on_window_button_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Settings/SettingsBack" to="CanvasLayer/PauseMenu" method="_on_settings_back_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Settings/SettingsBack" to="CanvasLayer/PauseMenu" method="_on_settings_back_pressed"]

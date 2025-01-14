@@ -2,6 +2,7 @@ extends Button
 
 @onready var animation_player = $"../../AnimationPlayer"
 @onready var sprite_2d = $".."
+@onready var click_sound = $"../../PauseMenu/ClickSound"
 
 func _ready() -> void:
 	await $"../../..".ready
@@ -55,6 +56,7 @@ func on_leave():
 
 
 func _on_mouse_entered():
+	click_sound.play_random()
 	sprite_2d.modulate = "e3e3e3"
 
 
