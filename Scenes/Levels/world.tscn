@@ -804,6 +804,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_v8mvt")
 text = "Back"
 
 [node name="HSlider" type="HSlider" parent="CanvasLayer/PauseMenu/Settings"]
+layout_mode = 0
 offset_left = 118.0
 offset_top = 98.0
 offset_right = 198.0
@@ -829,6 +830,7 @@ theme_override_fonts/font = ExtResource("4_prqbg")
 text = "SFX"
 
 [node name="HSlider2" type="HSlider" parent="CanvasLayer/PauseMenu/Settings"]
+layout_mode = 0
 offset_left = 118.0
 offset_top = 119.0
 offset_right = 198.0
