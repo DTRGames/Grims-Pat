@@ -141,3 +141,19 @@ func _on_settings_back_mouse_entered():
 
 func _on_credits_back_mouse_entered():
 	click_sound.play_random()
+
+
+func _on_hard_pressed():
+	click_sound.play_random()
+	GameEvents.deed_count = 5
+	SceneTransion.transion("res://Scenes/Levels/world.tscn")
+
+
+func _on_hard_mouse_entered():
+	difficulty_description.text = "5 deeds to consider + rush hour"
+	difficulty_description.visible = true
+	click_sound.play_random()
+
+
+func _on_hard_mouse_exited():
+	difficulty_description.visible = false
