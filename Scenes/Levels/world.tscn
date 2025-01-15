@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://ivohauh2bvd4"]
+[gd_scene load_steps=52 format=4 uid="uid://ivohauh2bvd4"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/world.gd" id="1_03klo"]
 [ext_resource type="PackedScene" uid="uid://da1nf55g0ar8d" path="res://Scenes/Levels/control.tscn" id="1_xplog"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/pause_menu.gd" id="3_55f3v"]
 [ext_resource type="FontFile" uid="uid://e4m514wv3fa3" path="res://Scenes/Levels/m6x11 (1).ttf" id="3_86ped"]
 [ext_resource type="Texture2D" uid="uid://b1xiblhuybw6r" path="res://Scenes/Levels/paperSheet/Paper-Sheet.png" id="3_bkdil"]
+[ext_resource type="PackedScene" uid="uid://crl8iq8a6yes8" path="res://Sounds/music.tscn" id="4_2r4ia"]
 [ext_resource type="FontFile" uid="uid://c3jw3bx1oeecq" path="res://Scenes/Levels/m3x6 (1).ttf" id="4_prqbg"]
 [ext_resource type="Texture2D" uid="uid://d1mvc5kstycfa" path="res://Scenes/Levels/paperSheet1/Button.png" id="6_y7ca4"]
 [ext_resource type="Script" path="res://Scenes/Levels/get_hint.gd" id="7_jq6ks"]
@@ -540,6 +541,8 @@ script = ExtResource("1_03klo")
 [node name="Paper-sheet" type="Sprite2D" parent="."]
 position = Vector2(160, 90)
 texture = ExtResource("3_6n0ie")
+
+[node name="Music" parent="." instance=ExtResource("4_2r4ia")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2

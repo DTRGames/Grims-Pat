@@ -5,6 +5,9 @@ extends AudioStreamPlayer
 @export var min_pitch = .9
 @export var max_pitch = 1.1
 
+func _ready():
+	play_random()
+
 func play_random():
 	if streams == null || streams.size() == 0:
 		return
