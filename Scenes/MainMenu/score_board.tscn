@@ -50,7 +50,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ci5y4"]
 resource_name = "Lose"
-length = 5.0
+length = 3.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -59,34 +59,22 @@ tracks/0/path = NodePath("Satan:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false, true]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect2:z_index")
+tracks/1/path = NodePath("ColorRect2:material:shader_parameter/Yoffset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ColorRect2:material:shader_parameter/Yoffset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 1.3, 4.5, 5),
+"times": PackedFloat32Array(0, 1, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-0.785, 2.0, 2.0, -0.785]
+"values": [-0.785, 0.8, 0.8, -0.785]
 }
 
 [sub_resource type="Animation" id="Animation_dvn5w"]
@@ -163,18 +151,6 @@ tracks/5/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("ColorRect2:z_index")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
 
 [sub_resource type="Animation" id="Animation_p8wrl"]
 resource_name = "Score"
@@ -202,7 +178,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.785, 0.5]
+"values": [-0.785, 0.8]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -269,14 +245,6 @@ process_mode = 3
 layer = 3
 script = ExtResource("1_yda40")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-z_index = 1
-material = SubResource("ShaderMaterial_5pulp")
-offset_left = -29.0
-offset_top = -50.0
-offset_right = 334.0
-offset_bottom = 191.0
-
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -284,6 +252,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.494118)
+
+[node name="Satan" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(160, 90)
+texture = ExtResource("4_nc2fe")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5pulp")
+offset_left = -29.0
+offset_top = -50.0
+offset_right = 334.0
+offset_bottom = 191.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -437,11 +417,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_84vs8")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_v7fdc")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_nt56a")
 text = "MAIN MENU"
-
-[node name="Satan" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(160, 90)
-texture = ExtResource("4_nc2fe")
 
 [node name="ClickSound" type="AudioStreamPlayer2D" parent="."]
 volume_db = -9.0
