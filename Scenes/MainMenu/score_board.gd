@@ -15,6 +15,7 @@ var lives: float
 @onready var control = $Control
 @onready var click_sound = $ClickSound
 @onready var satan = $Satan
+@onready var color_rect_2 = $ColorRect2
 
 func _ready() -> void:
 	animation_player.play("Enter")
@@ -50,11 +51,13 @@ func end_game():
 	var final_score: float = calculate_score()
 	final_score_label.text = "FINAL SCORE: " + str(final_score)
 	print("Your final score is: %f" % final_score)
+	color_rect_2.z_index = 0
 
 func set_best_time(time_in_seconds: int):
 	var seconds = time_in_seconds%60
 	var minutes = (time_in_seconds/60)%60
 	time_label.text = "TIME: " + "%02d:%02d" % [minutes, seconds]
+	
 
 func set_text_gameover():
 	title.text = str("YOU ARE FIRED")
