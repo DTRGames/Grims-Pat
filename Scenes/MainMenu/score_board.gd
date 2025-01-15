@@ -22,6 +22,11 @@ func _ready() -> void:
 	await animation_player.animation_finished
 	if lives <= 0:
 		animation_player.play("Lose")
+	elif GameEvents.hard_mode and GameEvents.hard_paper_left > 0:
+		animation_player.play("Lose")
+	elif GameEvents.hard_mode and GameEvents.hard_paper_left <= 0:
+		win.visible = true
+		animation_player.play("Win")
 	else :
 		win.visible = true
 		animation_player.play("Win")

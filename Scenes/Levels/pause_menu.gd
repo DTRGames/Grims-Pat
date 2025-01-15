@@ -10,13 +10,16 @@ var stop : bool = false
 @onready var label = $Settings/Label
 @onready var settings = $Settings
 @onready var title = $Panel/Title
+@onready var hard_mode_timer = $"../HardModeTimer"
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"escape") and stop == false:
 		if visible:
 			visible = false
+			hard_mode_timer.paused = false
 		else :
 			visible = true
+			hard_mode_timer.paused = true
 
 func update_display():
 	
@@ -26,6 +29,7 @@ func update_display():
 
 func _on_resume_pressed() -> void:
 	visible = false
+	hard_mode_timer.paused = false
 
 func _on_restart_pressed() -> void:
 	GameEvents.on_screen = 0
