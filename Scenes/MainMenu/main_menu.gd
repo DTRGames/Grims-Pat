@@ -47,12 +47,14 @@ func _on_normal_mouse_exited() -> void:
 
 func _on_easy_pressed() -> void:
 	GameEvents.deed_count = 3
+	GameEvents.hard_mode = false
 	click_sound.play_random()
 	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
 func _on_normal_pressed() -> void:
 	click_sound.play_random()
 	GameEvents.deed_count = 5
+	GameEvents.hard_mode = false
 	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
 func _on_difficulty_back_pressed() -> void:
@@ -146,6 +148,7 @@ func _on_credits_back_mouse_entered():
 func _on_hard_pressed():
 	click_sound.play_random()
 	GameEvents.deed_count = 5
+	GameEvents.hard_mode = true
 	SceneTransion.transion("res://Scenes/Levels/world.tscn")
 
 

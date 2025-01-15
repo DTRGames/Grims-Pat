@@ -864,6 +864,27 @@ bus = &"SFX"
 script = ExtResource("10_g0j8i")
 streams = Array[AudioStream]([ExtResource("11_60nfb"), ExtResource("12_lic56")])
 
+[node name="HardModeTimeLeft" type="Label" parent="CanvasLayer"]
+offset_left = 261.0
+offset_top = 34.0
+offset_right = 320.0
+offset_bottom = 47.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_prqbg")
+text = "time left: 11s"
+
+[node name="HardModePaperLeft" type="Label" parent="CanvasLayer"]
+offset_left = 261.0
+offset_top = 48.0
+offset_right = 320.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("4_prqbg")
+text = "paper left: 1"
+
+[node name="HardModeTimer" type="Timer" parent="CanvasLayer"]
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 libraries = {
 "": SubResource("AnimationLibrary_i08xp")
@@ -885,3 +906,4 @@ libraries = {
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Settings/WindowButton" to="CanvasLayer/PauseMenu" method="_on_window_button_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Settings/SettingsBack" to="CanvasLayer/PauseMenu" method="_on_settings_back_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Settings/SettingsBack" to="CanvasLayer/PauseMenu" method="_on_settings_back_pressed"]
+[connection signal="timeout" from="CanvasLayer/HardModeTimer" to="." method="_on_hard_mode_timer_timeout"]
