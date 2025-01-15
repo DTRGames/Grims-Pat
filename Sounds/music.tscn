@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://crl8iq8a6yes8"]
 
 [ext_resource type="Script" path="res://Sounds/music.gd" id="1_mx70n"]
-[ext_resource type="AudioStream" uid="uid://bdokh68de68rp" path="res://Sounds/pixel-245147 (1).mp3" id="2_cbsld"]
+[ext_resource type="AudioStream" uid="uid://dckouqqwiep85" path="res://Sounds/waiting-time-175800.mp3" id="2_ee4tn"]
 
 [node name="Music" type="AudioStreamPlayer"]
 volume_db = -9.0
 script = ExtResource("1_mx70n")
-streams = Array[AudioStream]([ExtResource("2_cbsld")])
+streams = Array[AudioStream]([ExtResource("2_ee4tn")])
 
 [connection signal="finished" from="." to="." method="_on_finished"]
