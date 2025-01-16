@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 
 func leave():
 	if GameEvents.hard_mode and not in_cooldown and not GameEvents.rush_hour:
-		var yes_or_no = [true]
+		var yes_or_no = [true, false]
 		var rush_hour = yes_or_no[randi() % yes_or_no.size()]
 		if rush_hour:
 			GameEvents.rush_hour = true
