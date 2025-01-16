@@ -3,8 +3,8 @@ extends Control
 var contribution = {
 	1: {
 		"SubTitle": "PROGRAMMER",
-		"Contributing": ["Dman", "the noob"],
-		"Link": ["https://dtrgames.itch.io/", "https://noob1211.itch.io/"]
+		"Contributing": ["Dman"],
+		"Link": ["https://dtrgames.itch.io/"]
 	},
 	2: {
 		"SubTitle": "GRAPHICS",
