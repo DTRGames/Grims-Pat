@@ -217,6 +217,8 @@ func on_pressed():
 	else:
 		print("Correct! Score: ",GameEvents.on_screen)
 		GameEvents.on_screen += 1
+		if GameEvents.rush_hour:
+			GameEvents.rush_hour_paper_left -= 1
 	
 	animation_player.play("Out")
 	await animation_player.animation_finished
@@ -231,6 +233,8 @@ func on_pressed2():
 	if killable:
 		print("Correct! Score: ",GameEvents.on_screen)
 		GameEvents.on_screen += 1
+		if GameEvents.rush_hour:
+			GameEvents.rush_hour_paper_left -= 1
 	else:
 		print("Wrong person! This person is innocent.")
 		GameEvents.lose_life.emit()

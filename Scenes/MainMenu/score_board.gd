@@ -20,7 +20,10 @@ var lives: float
 func _ready() -> void:
 	animation_player.play("Enter")
 	await animation_player.animation_finished
-	if lives <= 0:
+	if GameEvents.rush_lose:
+		animation_player.play("Lose")
+		GameEvents.rush_lose = false
+	elif lives <= 0:
 		animation_player.play("Lose")
 	else :
 		win.visible = true

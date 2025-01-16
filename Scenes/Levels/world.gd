@@ -20,6 +20,7 @@ func _ready():
 	GameEvents.game_over.connect(game_over)
 	GameEvents.leave.connect(on_leave)
 	GameEvents.lose_life.connect(lose_life)
+	GameEvents.rush_hour_lose.connect(rush_hour_lose)
 	last_person_id = control.current_person_id
 	win_on_screen = randi_range(40, 50)
 
@@ -56,5 +57,15 @@ func game_over():
 	ins.set_text_won()
 	if lives == 0:
 		ins.set_text_gameover()
+	
+	ins.end_game()
+
+func rush_hour_lose():
+	pause_menu.stop = true
+	var ins = score_board.instantiate()
+	ins.time = time_passed
+	ins.lives = lives
+	add_child(ins)
+	ins.set_text_gameover()
 	
 	ins.end_game()
