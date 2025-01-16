@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://ivohauh2bvd4"]
+[gd_scene load_steps=57 format=4 uid="uid://ivohauh2bvd4"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/world.gd" id="1_03klo"]
 [ext_resource type="PackedScene" uid="uid://da1nf55g0ar8d" path="res://Scenes/Levels/control.tscn" id="1_xplog"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://c4rgy74dxygdm" path="res://Sounds/click (17).wav" id="11_60nfb"]
 [ext_resource type="Script" path="res://Scenes/MainMenu/music_slider.gd" id="11_tny3s"]
 [ext_resource type="AudioStream" uid="uid://bsfjrl5xht7fl" path="res://Sounds/click (18).wav" id="12_lic56"]
+[ext_resource type="Script" path="res://Scenes/Levels/rush_hour.gd" id="16_vnvgx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgsb6"]
 atlas = ExtResource("3_bkdil")
@@ -533,6 +534,60 @@ _data = {
 "out": SubResource("Animation_tsnu4")
 }
 
+[sub_resource type="Animation" id="Animation_a2k4h"]
+resource_name = "Start"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vmc14"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Start:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_paadd"]
+resource_name = "End"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Passed:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5b06g"]
+_data = {
+"End": SubResource("Animation_paadd"),
+"RESET": SubResource("Animation_vmc14"),
+"Start": SubResource("Animation_a2k4h")
+}
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_03klo")
 
@@ -864,30 +919,118 @@ bus = &"SFX"
 script = ExtResource("10_g0j8i")
 streams = Array[AudioStream]([ExtResource("11_60nfb"), ExtResource("12_lic56")])
 
-[node name="HardModeTimeLeft" type="Label" parent="CanvasLayer"]
-offset_left = 261.0
-offset_top = 34.0
-offset_right = 320.0
-offset_bottom = 47.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("4_prqbg")
-text = "time left: 11s"
-
-[node name="HardModePaperLeft" type="Label" parent="CanvasLayer"]
-offset_left = 261.0
-offset_top = 48.0
-offset_right = 320.0
-offset_bottom = 61.0
-theme_override_fonts/font = ExtResource("4_prqbg")
-text = "paper left: 1"
-
-[node name="HardModeTimer" type="Timer" parent="CanvasLayer"]
-one_shot = true
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 libraries = {
 "": SubResource("AnimationLibrary_i08xp")
+}
+
+[node name="RushHour" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("16_vnvgx")
+
+[node name="Start" type="Panel" parent="CanvasLayer/RushHour"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -16.0
+offset_right = 39.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/RushHour/Start"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.5
+offset_top = -17.0
+offset_right = 37.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_prqbg")
+theme_override_font_sizes/font_size = 32
+text = "Rush Hour"
+
+[node name="Passed" type="Panel" parent="CanvasLayer/RushHour"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -16.0
+offset_right = 15.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/RushHour/Passed"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.5
+offset_top = -16.0
+offset_right = 50.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_prqbg")
+theme_override_font_sizes/font_size = 32
+text = "Passed"
+
+[node name="TimeLeft" type="Label" parent="CanvasLayer/RushHour"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55625
+anchor_top = 0.0222222
+anchor_right = 0.70625
+anchor_bottom = 0.0944444
+theme_override_fonts/font = ExtResource("4_prqbg")
+text = "Time Left: 120 S"
+metadata/_edit_use_anchors_ = true
+
+[node name="PaperLeft" type="Label" parent="CanvasLayer/RushHour"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55625
+anchor_top = 0.0944444
+anchor_right = 0.70625
+anchor_bottom = 0.166667
+theme_override_fonts/font = ExtResource("4_prqbg")
+text = "Paper Left: 7"
+metadata/_edit_use_anchors_ = true
+
+[node name="Length" type="Timer" parent="CanvasLayer/RushHour"]
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="CanvasLayer/RushHour"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/RushHour"]
+libraries = {
+"": SubResource("AnimationLibrary_5b06g")
 }
 
 [connection signal="animation_finished" from="CanvasLayer/GameOver/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
@@ -906,4 +1049,5 @@ libraries = {
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Settings/WindowButton" to="CanvasLayer/PauseMenu" method="_on_window_button_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/PauseMenu/Settings/SettingsBack" to="CanvasLayer/PauseMenu" method="_on_settings_back_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/Settings/SettingsBack" to="CanvasLayer/PauseMenu" method="_on_settings_back_pressed"]
-[connection signal="timeout" from="CanvasLayer/HardModeTimer" to="." method="_on_hard_mode_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/RushHour/Length" to="CanvasLayer/RushHour" method="_on_length_timeout"]
+[connection signal="timeout" from="CanvasLayer/RushHour/Cooldown" to="CanvasLayer/RushHour" method="_on_cooldown_timeout"]
